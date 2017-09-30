@@ -19,14 +19,15 @@
         $query = "SELECT * FROM posts";
         $result = mysqli_query($dbc,$query);
 
-        while ($post = mysqli_fetch_assoc($result)) { ?>
+        while ($post = mysqli_fetch_assoc($result)) {
+            ?>
 
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-6"><?php echo $post['title'];?></h1>
-                <p class="lead"><?php echo $post['post'];?></p>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
+                    <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
+                </div>
             </div>
-        </div>
 
         <?php } ?>
 
