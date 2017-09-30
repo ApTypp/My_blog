@@ -27,7 +27,7 @@
             <label for="post">Main text</label>
             <textarea class="form-control" id="post" rows="3" name="post"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" onclick="<?php echo $_POST['title'] ?>">Create a post</button>
+        <button type="submit" class="btn btn-primary">Create a post</button>
         <button type="reset" class="btn btn-secondary">Clear</button>
     </div>
 </form>
