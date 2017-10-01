@@ -17,7 +17,7 @@
     <?php
     //$query = "SELECT * FROM posts";
     //$result = mysqli_query($dbc,$query);
-    $id = correct_id ($_GET['id']);
+    $id = correct_id($_GET['id']);
     $result = data_post_id($dbc,$id);
     $post = mysqli_fetch_assoc($result);
     ?>
