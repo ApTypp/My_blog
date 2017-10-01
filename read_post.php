@@ -1,4 +1,4 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/config/setup.php'); ?>
+<?php include('config/setup.php');?>
 
 <!DOCTYPE HTML>
 <html>
@@ -9,15 +9,17 @@
     <?php include('config/js.php') ?>
 </head>
 
-
-    <?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
 <body>
+    <?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
+
     <div class="container">
 
         <?php
-        $result = data_post($dbc);
-
-        while ($post = mysqli_fetch_assoc($result)) {
+        //$query = "SELECT * FROM posts";
+        //$result = mysqli_query($dbc,$query);
+        $id = correct_id ($_GET['id']);
+        $result = data_post_id($dbc,$id);
+        $post = mysqli_fetch_assoc($result);
             ?>
 
             <div class="jumbotron jumbotron-fluid" style="overflow-x:hidden">
@@ -32,17 +34,14 @@
                         <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>">Delete</a>
                     </div>
                 </div>
-                    <div class="container">
-                        <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                        <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
-                    </div>
+                <div class="container">
+                    <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
+                    <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
+                </div>
             </div>
-        <?php } ?>
 
     </div>
 
     <?php include(D_TEMPLATE.'/footer.php') //Footer?>
-
 </body>
-
 </html>

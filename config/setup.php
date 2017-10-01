@@ -10,11 +10,13 @@ DEFINE('D_TEMPLATE','template');
 
 //Functions
 include('functions/data.php');
+include('functions/correct_id.php');
 
 // Site Title
 $site_title = 'Twittler';
 
 //Page setup
+
 
 
 ?>
