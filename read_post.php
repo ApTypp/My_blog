@@ -3,11 +3,7 @@
     <div class="container">
 
         <?php
-        //$query = "SELECT * FROM posts";
-        //$result = mysqli_query($dbc,$query);
-        $id = correct_id ($_GET['id']);
-        $result = data_post_id($dbc,$id);
-        $post = mysqli_fetch_assoc($result);
+        $post = $db->selectId($_GET['id']);
             ?>
 
             <div class="jumbotron jumbotron-fluid" style="overflow-x:hidden">

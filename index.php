@@ -3,7 +3,6 @@
 <div class="container">
 
     <?php
-    $db = new Database();
     $result = $db->selectAll();
     while ($post = mysqli_fetch_assoc($result)) {
         ?>

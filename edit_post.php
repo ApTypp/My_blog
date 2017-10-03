@@ -3,14 +3,10 @@
 <div class="container">
 
     <?php
-    //$query = "SELECT * FROM posts";
-    //$result = mysqli_query($dbc,$query);
-    $id = correct_id($_GET['id']);
-    $result = data_post_id($dbc,$id);
-    $post = mysqli_fetch_assoc($result);
+    $post = $db->selectId($_GET['id']);
     ?>
 
-    <form action="edit.php?id=<?php echo $id ?>" method="post">
+    <form action="edit.php?id=<?php echo $db->correctId($_GET['id']) ?>" method="post">
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title for post</label>
