@@ -1,16 +1,4 @@
-<?php include('config/setup.php');?>
-
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title><?php echo 'Posts | '.$site_title; ?></title>
-
-    <?php include('config/css.php') ?>
-    <?php include('config/js.php') ?>
-</head>
-
-<body>
-    <?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header ?>
 
     <div class="container">
 
@@ -42,6 +30,4 @@
 
     </div>
 
-    <?php include(D_TEMPLATE.'/footer.php') //Footer?>
-</body>
-</html>
+<?php include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>

@@ -1,16 +1,5 @@
-<?php include('config/setup.php');?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header
 
-<!DOCTYPE HTML>
-<html>
-<head>
-
-    <?php include('config/css.php') ?>
-    <?php include('config/js.php') ?>
-
-    <!-- BOOTSTRAP NAV BAR -->
-    <?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
-
-    <?php
     $post_title = mysqli_real_escape_string($dbc,$_POST['title']);
     $post = mysqli_real_escape_string($dbc,$_POST['post']);
 
@@ -23,8 +12,6 @@
     <?php } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($dbc);
     }
-    header('refresh:1.5,url=index.php')
-    ?>
+    header('refresh:1,url=index.php');
 
-</head>
-</html>
+    include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>

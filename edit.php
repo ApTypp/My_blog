@@ -1,14 +1,4 @@
-<?php include('config/setup.php');?>
-
-<!DOCTYPE HTML>
-<html>
-<head>
-
-    <?php include('config/css.php') ?>
-    <?php include('config/js.php') ?>
-
-    <!-- BOOTSTRAP NAV BAR -->
-    <?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header ?>
 
     <?php
     $post_title = mysqli_real_escape_string($dbc,$_POST['title']);
@@ -34,5 +24,4 @@
     header('refresh:122.5,url=index.php')
     ?>
 
-</head>
-</html>
+<?php include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>

@@ -1,18 +1,4 @@
-<?php include('config/setup.php');?>
-
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title><?php echo  'Add a Post | '.$site_title; ?></title>
-
-    <?php include('config/css.php') ?>
-    <?php include('config/js.php') ?>
-</head>
-
-<body>
-
-<!-- BOOTSTRAP NAV BAR -->
-<?php include(D_TEMPLATE.'/navigation.php') //Navigation Bar?>
+<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); //Header ?>
 
 <form action="insert.php" method="post">
     <div class="container">
@@ -32,13 +18,4 @@
     </div>
 </form>
 
-
-
-
-<?php include(D_TEMPLATE.'/footer.php') //Footer?>
-
-</body>
-
-
-
-</html>
+<?php include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>
