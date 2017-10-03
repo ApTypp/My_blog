@@ -2,20 +2,15 @@
 class Database {
 
     public $dbc;
-    public $serverName;
-    public $userName;
-    public $pass;
-    public $dbName;
-    public $tableName;
+    public $serverName = 'localhost';
+    public $userName = 'dev';
+    public $pass = 'thepassword1';
+    public $dbName = 'blog';
+    public $tableName = 'posts';
     public $sqlQuery;
     public $result;
 
     public function __construct(){
-        $this->serverName = 'localhost';
-        $this->userName = 'dev';
-        $this->pass = 'thepassword1';
-        $this->dbName = 'blog';
-        $this->tableName = 'posts';
         $this->dbc = mysqli_connect($this->serverName, $this->userName, $this->pass, $this->dbName) OR die("There was a problem connecting to the database.");
     }
 
