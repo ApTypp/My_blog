@@ -19,7 +19,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/classes/database.p
     <div class="container">
 
         <?php
-        $db = new database();
+        $db = new Database();
         $result = $db->selectAll();
         while ($post = mysqli_fetch_assoc($result)) {
             ?>

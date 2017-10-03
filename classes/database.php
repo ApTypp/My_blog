@@ -1,15 +1,22 @@
 <?php
-class database {
+class Database {
 
-    public $dbc, $serverName, $userName, $pass, $dbName, $tableName, $sqlQuery, $result;
+    public $dbc;
+    public $serverName;
+    public $userName;
+    public $pass;
+    public $dbName;
+    public $tableName;
+    public $sqlQuery;
+    public $result;
 
     public function __construct(){
-        $this -> serverName = 'localhost';
-        $this -> userName = 'dev';
-        $this -> pass = 'thepassword1';
-        $this -> dbName = 'blog';
-        $this -> tableName = 'posts';
-        $this -> dbc = mysqli_connect($this->serverName, $this->userName, $this->pass, $this->dbName) OR die("There was a problem connecting to the database.");
+        $this->serverName = 'localhost';
+        $this->userName = 'dev';
+        $this->pass = 'thepassword1';
+        $this->dbName = 'blog';
+        $this->tableName = 'posts';
+        $this->dbc = mysqli_connect($this->serverName, $this->userName, $this->pass, $this->dbName) OR die("There was a problem connecting to the database.");
     }
 
     public function selectAll()  {
