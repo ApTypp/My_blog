@@ -1,4 +1,8 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/config/setup.php'); ?>
+<?php
+include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/config/setup.php');
+include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/classes/database.php');
+?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -15,8 +19,8 @@
     <div class="container">
 
         <?php
-        $result = data_post($dbc);
-
+        $db = new database();
+        $result = $db->selectAll();
         while ($post = mysqli_fetch_assoc($result)) {
             ?>
 
@@ -29,7 +33,7 @@
                         <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Read</a>
                         <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>">Delete</a>
+                        <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
                     </div>
                 </div>
                     <div class="container">
