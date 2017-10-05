@@ -65,6 +65,17 @@ class Database {
         return $this->result;
     }
 
+    public function editRow($id,$post_title,$post)  {
+        $post_title = $this->escape_string($post_title);
+        $post = $this->escape_string($post);
+        $this->id = $this->correctId($id);
+        $this->sqlQuery = "UPDATE posts 
+        SET title = '$post_title', post = '$post' 
+        WHERE id = '$this->id'";
+        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
+        return $this->result;
+    }
+
     public function __destruct() {
         mysqli_close($this->dbc)
         OR die("There was a problem disconnecting from the database.");
