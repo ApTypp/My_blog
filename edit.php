@@ -7,7 +7,7 @@
     //$db->deleteRow($_GET['id']);
 
     // Add new values
-    $sql = $db->editRow($_GET['id'],$_POST['title'],$_POST['post']);
+    $sql = $db->editRow($_GET['id'],$_POST['title'],$_POST['post'],$date);
 
     if($sql) {
         ?>

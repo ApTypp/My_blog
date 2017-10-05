@@ -1,6 +1,6 @@
 <?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header
 
-    $result = $db->insertRow($_POST['title'],$_POST['post']);
+    $result = $db->insertRow($_POST['title'],$_POST['post'], $date);
     if($result){
         ?>
         <div class="container">
@@ -9,6 +9,6 @@
     <?php } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($dbc);
     }
-    header('refresh:1,url=index.php');
+    header('refresh:11,url=index.php');
 
     include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>

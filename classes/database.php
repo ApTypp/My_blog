@@ -41,10 +41,10 @@ class Database {
         return $this -> post;
     }
 
-    public function insertRow($post_title,$post)  {
+    public function insertRow($post_title,$post,$date)  {
         $post_title = $this->escape_string($post_title);
         $post = $this->escape_string($post);
-        $this->sqlQuery = "INSERT INTO posts (title, post) VALUES ('$post_title','$post')";
+        $this->sqlQuery = "INSERT INTO posts (title, post, add_date) VALUES ('$post_title','$post', '$date')";
         $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
         return $this->result;
     }
@@ -65,12 +65,12 @@ class Database {
         return $this->result;
     }
 
-    public function editRow($id,$post_title,$post)  {
+    public function editRow($id,$post_title,$post,$date)  {
         $post_title = $this->escape_string($post_title);
         $post = $this->escape_string($post);
         $this->id = $this->correctId($id);
         $this->sqlQuery = "UPDATE posts 
-        SET title = '$post_title', post = '$post' 
+        SET title = '$post_title', post = '$post', add_date = '$date'
         WHERE id = '$this->id'";
         $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
         return $this->result;

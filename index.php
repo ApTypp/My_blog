@@ -3,6 +3,7 @@
 <div class="container">
 
     <?php
+
     $result = $db->selectAll();
     while ($post = mysqli_fetch_assoc($result)) {
         ?>
@@ -23,6 +24,7 @@
                     <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
                     <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
                 </div>
+            <div class="modal-footer"><?php echo $post['add_date'] ?></div>
         </div>
     <?php } ?>
 

@@ -15,6 +15,11 @@ DEFINE('D_CONFIG','/series/dynamic/my_blog/config/');
 // Site Title
 $site_title = 'Twittler';
 
+//Date and time
+date_default_timezone_set('Europe/Riga');
+$date = date('H:i, d.m.y', time());
+
+
 //Page setup
 
 
