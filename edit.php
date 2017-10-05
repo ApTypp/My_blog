@@ -23,8 +23,8 @@
         </div>
         <?php
     }
-        header('refresh:122.5,url=index.php');
+        header('refresh:1,url=index.php');
     ?>
 
 
-<?php include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>
+<?php get_footer(); ?>

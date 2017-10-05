@@ -11,4 +11,4 @@
     }
     header('refresh:11,url=index.php');
 
-    include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php') //Footer ?>
+    get_footer(); //Footer ?>

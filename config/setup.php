@@ -10,7 +10,7 @@ DEFINE('D_TEMPLATE','/series/dynamic/my_blog/template/');
 DEFINE('D_CONFIG','/series/dynamic/my_blog/config/');
 
 //Functions
-
+include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/functions/get_functions.php');
 
 // Site Title
 $site_title = 'Twittler';
