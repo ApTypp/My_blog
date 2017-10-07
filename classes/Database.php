@@ -3,18 +3,26 @@ class Database {
 
     protected $dbc;
     public $serverName = 'localhost';
-    public $userName = 'dev';
-    public $pass = 'thepassword1';
-    public $dbName = 'blog';
+    public $userName = 'root';
+    public $pass = 'secret';
+    public $dbName = 'artb';
     public $tableName = 'posts';
     public $id = '1';
     public $sqlQuery;
     public $result;
     public $post;
 
-    public function __construct(){
-        $this->dbc = mysqli_connect($this->serverName, $this->userName, $this->pass, $this->dbName) OR die("There was a problem connecting to the database.");
+    public function __construct($serverName,$userName,$DBPassword,$dbname,$port){
+        try{
+            $this->dbc = mysqli_connect($serverName, $userName, $DBPassword, $dbname,$port);
+//            echo "DbDone";
+        } catch (Exception $e) {
+//            echo "I FAILED";
+            echo $e->getMessage();
+        }
+//        echo "DbAttemptDone ";
     }
+
 
     public function correctId($page_id){ // Function returns id as a number without characters and not empty
         $page_id = preg_replace('~[^0-9]+~','',$page_id);
@@ -93,5 +101,4 @@ class Database {
     }
 
 }
-$db = new Database();
 ?>

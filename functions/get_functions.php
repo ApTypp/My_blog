@@ -1,7 +1,7 @@
 <?php
 
 function get_footer() {
-    include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'footer.php');
+   return include_once(getRoot('/template/footer.php'));
 }
 
 ?>

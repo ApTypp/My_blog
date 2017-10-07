@@ -1,14 +1,16 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/config/setup.php'); ?>
+<?php
+include_once('../config/env.php');
+include_once (getRoot('config/setup.php')); ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title><?php echo 'Posts | '.$site_title; ?></title>
+    <title><?php echo 'Posts lol| '.$site_title; ?></title>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'].D_CONFIG.'css.php') ?>
-    <?php include($_SERVER['DOCUMENT_ROOT'].D_CONFIG.'js.php') ?>
+    <?php include(getRoot('/config/css.php')); ?>
+    <?php include(getRoot('/config/js.php')); ?>
 </head>
 
 
-<?php include($_SERVER['DOCUMENT_ROOT'].D_TEMPLATE.'navigation.php') //Navigation Bar?>
+<?php include(getRoot('/template/navigation.php')); //Navigation Bar?>
 <body>

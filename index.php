@@ -1,9 +1,12 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header ?>
+<?php
+
+include_once('config/env.php');
+include_once (getRoot('/template/header.php')); // Header ?>
+
+
 
 <div class="container">
-
     <?php
-
     $result = $db->selectAll();
     while ($post = mysqli_fetch_assoc($result)) {
         ?>
@@ -30,4 +33,4 @@
 
 </div>
 
-<?php get_footer(); //Footer ?>
+<?php include_once(getRoot('/template/footer.php')); ?>
