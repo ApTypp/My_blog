@@ -1,5 +1,5 @@
 <?php
-
+echo 123;
 include_once('config/env.php');
 include_once (getRoot('/template/header.php')); // Header ?>
 
@@ -25,7 +25,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
             </div>
                 <div class="container">
                     <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                    <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
+                    <p class="lead"><?php echo htmlspecialchars( $post['body']);?> </p>
                 </div>
             <div class="modal-footer"><?php echo $post['add_date'] ?></div>
         </div>

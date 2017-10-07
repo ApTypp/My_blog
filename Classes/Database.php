@@ -1,28 +1,25 @@
 <?php
+namespace Classes;
+
 class Database {
 
     protected $dbc;
-    public $serverName = 'localhost';
-    public $userName = 'root';
-    public $pass = 'secret';
-    public $dbName = 'artb';
-    public $tableName = 'posts';
-    public $id = '1';
-    public $sqlQuery;
-    public $result;
-    public $post;
 
     public function __construct($serverName,$userName,$DBPassword,$dbname,$port){
         try{
             $this->dbc = mysqli_connect($serverName, $userName, $DBPassword, $dbname,$port);
 //            echo "DbDone";
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 //            echo "I FAILED";
             echo $e->getMessage();
         }
 //        echo "DbAttemptDone ";
     }
 
+
+    private function runQuery($query){
+        return mysqli_query($this->dbc,$query);
+    }
 
     public function correctId($page_id){ // Function returns id as a number without characters and not empty
         $page_id = preg_replace('~[^0-9]+~','',$page_id);
@@ -35,10 +32,8 @@ class Database {
         return $this->result;
     }
 
-    public function selectAll()  {
-        $this->sqlQuery = 'SELECT * FROM '.$this -> tableName;
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        return $this -> result;
+    public function selectAll(Entity $object)  {
+        return $this->runQuery('SELECT * FROM '.$object->tableName);
     }
 
     public function selectId($id)  {
@@ -85,14 +80,10 @@ class Database {
     }
 
     public function save($post_title,$post,$date,$id){
-        if ($id == NULL) {
-            $this->result = $this->insertRow($post_title,$post,$date);
+        if ($id === NULL) {
+            return $this->insertRow($post_title,$post,$date);
         }
-        else
-        {
-            $this->result = $this->editRow($id,$post_title,$post,$date);
-        }
-        return $this->result;
+        return $this->editRow($id,$post_title,$post,$date);
     }
 
     public function __destruct() {

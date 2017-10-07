@@ -1,4 +1,5 @@
 <?php
+echo "Header Starting";
 include_once('../config/env.php');
 include_once (getRoot('config/setup.php')); ?>
 
