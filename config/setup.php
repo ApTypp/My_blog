@@ -4,6 +4,8 @@
 //Classes
     //Database
     include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/classes/database.php');
+    //Posts
+    include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/classes/posts.php');
 
 //Constants
 DEFINE('D_TEMPLATE','/series/dynamic/my_blog/template/');

@@ -1,7 +1,7 @@
 <?php
 class Database {
 
-    public $dbc;
+    protected $dbc;
     public $serverName = 'localhost';
     public $userName = 'dev';
     public $pass = 'thepassword1';
@@ -49,14 +49,14 @@ class Database {
         return $this->result;
     }
 
-    public function insertRowId($id,$post_title,$post)  {
+    /*  public function insertRowId($id,$post_title,$post)  {
         $post_title = $this->escape_string($post_title);
         $post = $this->escape_string($post);
         $id = $this->correctId($id);
         $this->sqlQuery = "INSERT INTO posts (id,title, post) VALUES ('$id','$post_title','$post')";
         $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
         return $this->result;
-    }
+     } */
 
     public function deleteRow($id)  {
         $id = $this->correctId($id);
@@ -73,6 +73,17 @@ class Database {
         SET title = '$post_title', post = '$post', add_date = '$date'
         WHERE id = '$this->id'";
         $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
+        return $this->result;
+    }
+
+    public function save($post_title,$post,$date,$id){
+        if ($id == NULL) {
+            $this->result = $this->insertRow($post_title,$post,$date);
+        }
+        else
+        {
+            $this->result = $this->editRow($id,$post_title,$post,$date);
+        }
         return $this->result;
     }
 
