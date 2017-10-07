@@ -45,11 +45,6 @@ class Database {
         echo $sql;
         return $sql;
     }
-    
-    public function __destruct() {
-        mysqli_close($this->dbc)
-        OR die("There was a problem disconnecting from the database.");
-    }
 
 }
 ?>
