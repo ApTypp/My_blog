@@ -5,7 +5,7 @@ class Database {
 
     protected $dbc;
 
-    public function __construct($serverName,$userName,$DBPassword,$dbname,$port){
+    protected function __construct($serverName,$userName,$DBPassword,$dbname,$port){
         try{
             $this->dbc = mysqli_connect($serverName, $userName, $DBPassword, $dbname,$port);
 //            echo "DbDone";
@@ -17,75 +17,35 @@ class Database {
     }
 
 
-    private function runQuery($query){
+    protected function buildSelectAll(Entity $object){
+        return 'SELECT * FROM '.$object->tableName;
+    }
+    
+    
+    protected function runQuery($query){
         return mysqli_query($this->dbc,$query);
     }
 
-    public function correctId($page_id){ // Function returns id as a number without characters and not empty
-        $page_id = preg_replace('~[^0-9]+~','',$page_id);
-        if($page_id == NULL) { $page_id = 1; }
-        return $page_id;
-    }
-
     public function escape_string($target){
-        $this->result = mysqli_real_escape_string($this->dbc,$target);
-        return $this->result;
+      mysqli_real_escape_string($this->dbc,$target);
     }
 
-    public function selectAll(Entity $object)  {
-        return $this->runQuery('SELECT * FROM '.$object->tableName);
-    }
 
-    public function selectId($id)  {
-        $id = $this->correctId($id);
-        $this->sqlQuery = 'SELECT * FROM '.$this -> tableName.' WHERE id = '.$id;
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        $this->post=mysqli_fetch_assoc($this -> result);
-        return $this -> post;
-    }
-
-    public function insertRow($post_title,$post,$date)  {
-        $post_title = $this->escape_string($post_title);
-        $post = $this->escape_string($post);
-        $this->sqlQuery = "INSERT INTO posts (title, post, add_date) VALUES ('$post_title','$post', '$date')";
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        return $this->result;
-    }
-
-    /*  public function insertRowId($id,$post_title,$post)  {
-        $post_title = $this->escape_string($post_title);
-        $post = $this->escape_string($post);
-        $id = $this->correctId($id);
-        $this->sqlQuery = "INSERT INTO posts (id,title, post) VALUES ('$id','$post_title','$post')";
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        return $this->result;
-     } */
-
-    public function deleteRow($id)  {
-        $id = $this->correctId($id);
-        $this->sqlQuery = "DELETE FROM posts WHERE id = $id";
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        return $this->result;
-    }
-
-    public function editRow($id,$post_title,$post,$date)  {
-        $post_title = $this->escape_string($post_title);
-        $post = $this->escape_string($post);
-        $this->id = $this->correctId($id);
-        $this->sqlQuery = "UPDATE posts 
-        SET title = '$post_title', post = '$post', add_date = '$date'
-        WHERE id = '$this->id'";
-        $this->result = mysqli_query($this->dbc,$this -> sqlQuery);
-        return $this->result;
-    }
-
-    public function save($post_title,$post,$date,$id){
-        if ($id === NULL) {
-            return $this->insertRow($post_title,$post,$date);
+    public function buildSelectBy(Entity $object,array $parameters){
+        $sql = $this->buildSelectAll($object);
+        $i = 0;
+        foreach($parameters as $key=>$value){
+            if($i === 0){
+                $sql .= ' WHERE ';
+            } else {
+                $sql .= ' AND ';
+            }
+            $sql .= $key." = '$value'";
         }
-        return $this->editRow($id,$post_title,$post,$date);
+        echo $sql;
+        return $sql;
     }
-
+    
     public function __destruct() {
         mysqli_close($this->dbc)
         OR die("There was a problem disconnecting from the database.");

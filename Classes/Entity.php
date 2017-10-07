@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-class Entity {
+abstract class Entity {
     public $tableName;
 
     public $id;
@@ -11,7 +11,8 @@ class Entity {
     protected function __construct()
     {
         if($this->tableName === null){
-            $this->tableName = strtolower(get_class($this)).'s';
+//            echo $this->tableName;
+            $this->tableName = strtolower((new \ReflectionClass($this))->getShortName()).'s';
         }
     }
 }

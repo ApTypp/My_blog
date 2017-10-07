@@ -7,7 +7,9 @@ include_once (getRoot('/template/header.php')); // Header ?>
 
 <div class="container">
     <?php
-    $result = $db->selectAll();
+    $post = new \Classes\Post();
+    echo $post->tableName;
+    $result = $orm->selectById($post,1);
     while ($post = mysqli_fetch_assoc($result)) {
         ?>
 
