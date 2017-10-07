@@ -12,8 +12,6 @@ class Post extends Entity {
         parent::__construct();
     }
 
-
-
 }
 
 

@@ -7,7 +7,6 @@ class ORM extends Database{
         parent::__construct($serverName,$userName,$DBPassword,$dbname,$port);
     }
 
-
     public function selectById(Entity $object,$id)  {
         return $this->selectBy($object,['id'=>$id]);
     }
