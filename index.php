@@ -1,10 +1,15 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header ?>
+<?php
+echo 123;
+include_once('config/env.php');
+include_once (getRoot('/template/header.php')); // Header ?>
+
+
 
 <div class="container">
-
     <?php
-
-    $result = $db->selectAll();
+    $post = new \Classes\Post();
+    echo $post->tableName;
+    $result = $orm->selectById($post,1);
     while ($post = mysqli_fetch_assoc($result)) {
         ?>
 
@@ -22,7 +27,7 @@
             </div>
                 <div class="container">
                     <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                    <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
+                    <p class="lead"><?php echo htmlspecialchars( $post['body']);?> </p>
                 </div>
             <div class="modal-footer"><?php echo $post['add_date'] ?></div>
         </div>
@@ -30,4 +35,4 @@
 
 </div>
 
-<?php get_footer(); //Footer ?>
+<?php include_once(getRoot('/template/footer.php')); ?>

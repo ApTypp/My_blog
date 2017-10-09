@@ -1,7 +1,5 @@
-<!-- jQuery -->
-<script src="C:\jquery-3.2.1.min.js"></script>
-<!-- jQuery UI -->
-<script src="C:\jquery-ui-1.12.1\jquery-ui.js"></script>
+
+<script src="https://use.fontawesome.com/3ef54e1b84.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
