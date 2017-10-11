@@ -25,7 +25,13 @@
                     <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
                     <p class="lead"><?php echo htmlspecialchars( $post['body']);?> </p>
                 </div>
-                <div class="modal-footer"><?php echo $post['add_date'] ?></div>
+                <div class="modal-footer"><?php
+                    if ($post['date_modified'] == NULL){
+                        echo $post['date_created'];
+                    }
+                    else {
+                        echo 'Modified: '.$post['date_modified'];
+                    } ?></div>
             </div>
 
     </div>
