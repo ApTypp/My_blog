@@ -18,4 +18,4 @@
     </div>
 </form>
 
-<?php get_footer(); //Footer ?>
+<?php include_once(getRoot('/template/footer.php')); ?>

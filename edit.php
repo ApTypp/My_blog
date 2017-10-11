@@ -1,8 +1,14 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); // Header ?>
+<?php
+include_once('config/env.php');
+include_once (getRoot('/template/header.php')); // Header ?>
 
     <?php
-
-    $sql = $db->save($_POST['title'],$_POST['post'],$date,$_GET['id']);
+    $post = new \Classes\Post();
+    $parameters = array(
+    'title'=>$_POST['title'],
+    'body'=>$_POST['post'],
+    'date_modified'=>$date);
+    $sql = $dbal->save($post, $_GET['id'], $parameters);
 
     if($sql) {
         ?>
@@ -22,4 +28,4 @@
     ?>
 
 
-<?php get_footer(); ?>
+<?php include_once(getRoot('/template/footer.php')); ?>

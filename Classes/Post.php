@@ -3,7 +3,7 @@ namespace Classes;
 
 
 class Post extends Entity {
-    public $tableName;
+
     public $title;
     public $body;
 
@@ -13,6 +13,5 @@ class Post extends Entity {
     }
 
 }
-
 
 ?>

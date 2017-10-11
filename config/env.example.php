@@ -3,7 +3,7 @@ echo "Env included";
 require_once(__DIR__.'/../Classes/Database.php');
 require_once(__DIR__.'/../Classes/Entity.php');
 require_once(__DIR__.'/../Classes/Post.php');
-require_once(__DIR__.'/../Classes/ORM.php');
+require_once(__DIR__ . '/../Classes/DBAL.php');
 
 // Site Title
 $site_title = 'qwe';

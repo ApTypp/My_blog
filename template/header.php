@@ -1,6 +1,5 @@
 <?php
-echo "Header Starting";
-include_once('../config/env.php');
+include_once('../My_blog/config/env.php');
 ?>
 <!DOCTYPE HTML>
 <html>

@@ -3,7 +3,10 @@
     <div class="container">
 
         <?php
-        $post = $db->selectId($_GET['id']);
+        //$post = $db->selectId($_GET['id']);
+        $post = new \Classes\Post();
+        $result = $dbal->selectBy($post,array('id' => $_GET['id']));
+        $post = mysqli_fetch_assoc($result);
             ?>
 
             <div class="jumbotron jumbotron-fluid" style="overflow-x:hidden">
@@ -20,11 +23,11 @@
                 </div>
                 <div class="container">
                     <h1 class="display-6"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                    <p class="lead"><?php echo htmlspecialchars( $post['post']);?> </p>
+                    <p class="lead"><?php echo htmlspecialchars( $post['body']);?> </p>
                 </div>
                 <div class="modal-footer"><?php echo $post['add_date'] ?></div>
             </div>
 
     </div>
 
-<?php get_footer(); //Footer ?>
+<?php include_once(getRoot('/template/footer.php')); ?>
