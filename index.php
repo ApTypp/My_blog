@@ -6,9 +6,9 @@ include_once (getRoot('/template/header.php')); // Header ?>
 
     <div class="container">
         <?php
-        $post = new \Classes\Post();
-        $result = $dbal->selectAll($post);
-        while ($post = mysqli_fetch_assoc($result)) {
+        $posts = new \Classes\Post();
+        $result = $dbal->selectAll($posts);
+        while ($post = $result->fetch()) {
             ?>
 
             <div class="jumbotron jumbotron-fluid" style="overflow-x:hidden">
@@ -20,7 +20,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
                         <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Read</a>
                         <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
                     </div>
                 </div>
                 <div class="container">

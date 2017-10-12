@@ -4,9 +4,9 @@
 
         <?php
         //$post = $db->selectId($_GET['id']);
-        $post = new \Classes\Post();
-        $result = $dbal->selectBy($post,array('id' => $_GET['id']));
-        $post = mysqli_fetch_assoc($result);
+        $posts = new \Classes\Post();
+        $result = $dbal->SelectBy($posts,array('id' => $_GET['id']));
+        $post = $result->fetch();
             ?>
 
             <div class="jumbotron jumbotron-fluid" style="overflow-x:hidden">

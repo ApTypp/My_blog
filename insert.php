@@ -14,6 +14,6 @@ if($sql){
 <?php } else{
     echo "NOPE";
 }
-header('refresh:1,url=index.php');
+//header('refresh:1,url=index.php');
 
 include_once(getRoot('/template/footer.php')); ?>

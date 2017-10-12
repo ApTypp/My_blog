@@ -12,34 +12,27 @@ class DBAL extends Database{
     }
 
     public function selectAll(Entity $object)  {
-        return $this->runQuery($this->buildSelectAll($object));
+        $stmt = $this->query($this->buildSelectAll($object));
+        return $stmt; //->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function selectBy(Entity $object,array $parameters)  {
-        return $this->runQuery($this->buildSelectBy($object,$parameters));
+        return $this->buildSelectBy($object,$parameters);
     }
 
     public function deleteById(Entity $object, $id)  {
-
-        return $this->runQuery($this->buildDeleteById($object,$id));
+        $stmt = $this->prepare($this->buildDeleteById($object));
+        $stmt->execute([$id]);
+        return $stmt;
     }
-
-//    public function editById($id,$post_title,$post,$date)
-//    {
-//        $this->sqlQuery = "UPDATE posts
-//            SET title = '$post_title', post = '$post', add_date = '$date'
-//            WHERE id = '$this->id'";
-//        $this->result = mysqli_query($this->dbc, $this->sqlQuery);
-//        return $this->result;
-//    }
 
     public function save(Entity $object, $id, array $parameters)
     {
         if ($id == NULL) {
-            echo 'id = 0, it works';
-            return $this->runQuery($this->buildInsert($object, $parameters));
+//            echo 'id = 0, it works';
+            return $this->buildInsert($object, $parameters);
         }
-            return $this->runQuery($this->buildEditById($object, $id , $parameters));
+            return $this->buildEditById($object, $id , $parameters);
     }
 
 }

@@ -4,11 +4,12 @@
 
     <?php
     $post = new \Classes\Post();
-    $result = $dbal->selectBy($post,array('id' => $_GET['id']));
-    $post = mysqli_fetch_assoc($result);
+    $id=preg_replace('~[^0-9]+~','',$_GET['id']);
+    $result = $dbal->selectBy($post,array('id' => $id));
+    $post = $result->fetch();
     ?>
 
-    <form action="edit.php?id=<?php echo $_GET['id'] ?>" method="post">
+    <form action="edit.php?id=<?php echo $id ?>" method="post">
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title for post</label>
