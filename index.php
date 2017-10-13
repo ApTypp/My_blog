@@ -15,7 +15,7 @@ while ($post = $result->fetch()) { ?>
             </button>
             <div class="dropdown-menu ">
                 <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Open</a>
-                <a class="dropdown-item" data-toggle="modal" data-target="#Modal<?php echo $post['id'];?>">Read</a>
+                <a class="dropdown-item" href = "#" data-toggle="modal" data-target="#Modal<?php echo $post['id'];?>">Read</a>
                 <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
@@ -38,10 +38,15 @@ while ($post = $result->fetch()) { ?>
         while ($comments = $result_comments->fetch()){
             if ($comments['post_id'] === $post['id']){ ?>
                 <hr>
-                
+
                 <a style="margin-left: 5%"><strong><?php echo $comments['author']; ?></strong></a>
                 <a class="float-right" style="margin-right: 5%"><?php echo $comments['date_created']; ?></a>
-                <p style="margin-left: 5%; margin-right: 5%"><?php echo $comments['body']; ?></p><?php
+                <p style="margin-left: 5%; margin-right: 5%"><?php echo $comments['body']; ?></p>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="delete_comment.php?id=<?php echo $comments['id'] ?>">Delete</a>
+                </div>
+                <?php
+
             }
         }
 

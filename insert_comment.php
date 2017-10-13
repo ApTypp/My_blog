@@ -11,13 +11,5 @@ $parameters = array(
     'body'=>$_POST['body'],
     'date_created'=>$date);
 $sql = $dbal->save($comment, '', $parameters);
-if($sql){
-    ?>
-    <div class="container">
-        <h1 class="display-6"><?php echo "Records inserted successfully.";?></h1>
-    </div>
-<?php } else{
-    echo "NOPE";
-}
-header('refresh:1,url=index.php');
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 include_once(getRoot('/template/footer.php')); ?>
