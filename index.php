@@ -17,7 +17,8 @@ include_once (getRoot('/template/header.php')); // Header ?>
                         ...
                     </button>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Read</a>
+                        <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Open</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Read</a>
                         <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
@@ -36,8 +37,25 @@ include_once (getRoot('/template/header.php')); // Header ?>
                     } ?>
                 </div>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><?php echo htmlspecialchars( $post['title']);?></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php echo htmlspecialchars( $post['body']);?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php } ?>
-
     </div>
 
 <?php include_once(getRoot('/template/footer.php')); ?>
