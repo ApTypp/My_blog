@@ -1,11 +1,16 @@
-<?php include_once('config/env.php');
+<?php
+include_once('config/env.php');
 include_once (getRoot('/template/header.php')); // Header
-$post = new \Classes\Post();
+
+echo $_POST['body'];
+echo $_POST['post_id'];
+
 $parameters = array(
-    'title'=>$_POST['title'],
-    'body'=>$_POST['post'],
+    'post_id'=>$_POST['post_id'],
+    'author'=>'anonymous',   // Accounts is not ready yet
+    'body'=>$_POST['body'],
     'date_created'=>$date);
-$sql = $dbal->save($post, '', $parameters);
+$sql = $dbal->save($comment, '', $parameters);
 if($sql){
     ?>
     <div class="container">
@@ -15,5 +20,4 @@ if($sql){
     echo "NOPE";
 }
 header('refresh:1,url=index.php');
-
 include_once(getRoot('/template/footer.php')); ?>
