@@ -13,8 +13,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post.php">Create a Post</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search">
+            <form class="form-inline my-2 my-md-0" action="search.php" method="post">
+                <input name="search" class="form-control" type="text" placeholder="Search">
             </form>
         </div>
     </div>

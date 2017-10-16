@@ -39,9 +39,9 @@ while ($post = $result->fetch()) { ?>
             if ($comments['post_id'] === $post['id']){ ?>
                 <hr>
 
-                <a style="margin-left: 5%"><strong><?php echo $comments['author']; ?></strong></a>
+                <a style="margin-left: 5%"><strong><?php echo htmlspecialchars( $comments['author']); ?></strong></a>
                 <a class="float-right" style="margin-right: 5%"><?php echo $comments['date_created']; ?></a>
-                <p style="margin-left: 5%; margin-right: 5%"><?php echo $comments['body']; ?></p>
+                <p style="margin-left: 5%; margin-right: 5%"><?php echo htmlspecialchars( $comments['comments_body']); ?></p>
                 <div class="modal-footer">
                     <a class="btn btn-secondary" href="delete_comment.php?id=<?php echo $comments['id'] ?>">Delete</a>
                 </div>
