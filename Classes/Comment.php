@@ -10,10 +10,10 @@ class Comment extends Entity {
 
     public function __construct()
     {
+        $this->tableName='comments';
         parent::__construct();
     }
 
 }
-$comment = new \Classes\Comment();
-$comment->tableName = 'comments';
+
 ?>

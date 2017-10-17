@@ -1,6 +1,7 @@
 <!-- BOOTSTRAP NAV BAR  -->
-<?php
+<?php include_once('config/env.php');
 $current_page = basename($_SERVER['PHP_SELF']);
+session_start();
 ?>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container">
@@ -14,8 +15,31 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </li>
             </ul>
             <form class="form-inline my-2 my-md-0" action="search.php" method="post">
-                <input name="search" class="form-control" type="text" placeholder="Search">
+                <div class="col-auto">
+                    <input name="search" class="form-control" type="text" placeholder="Search">
+                </div>
             </form>
+            <?php if (empty($_SESSION['username'])){ ?>
+            <form class="form-inline my-2 my-md-0" action="login.php" method="post" style="margin: 5%">
+                <input name="name" class="form-control" type="text" maxlength="20" placeholder="Username" style="width: 25%">
+                <input name="pass" class="form-control" type="password" maxlength="50" placeholder="Password" style="width: 25%">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                </div>
+                <div class="col-auto">
+                    <a href="sign_up.php" class="btn btn-outline-secondary">Sign up</a>
+                </div>
+            </form>
+            <?php } else { ?>
+
+            <form class="form-inline my-2 my-md-0" action="login.php" method="post" style="margin: 5%">
+                <p class="text-info">Logged in as: <?php echo $_SESSION['username']; ?></p>
+                <div class="col-auto">
+                    <a href="logout.php" class="btn btn-outline-secondary">Logout</a>
+                </div>
+            </form>
+
+            <?php } ?>
         </div>
     </div>
 

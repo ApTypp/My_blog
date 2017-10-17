@@ -11,6 +11,10 @@ WHERE p.body LIKE ? OR p.title LIKE ? OR c.author LIKE ? OR c.comments_body LIKE
 $stmt = $dbal->prepare($query);
 $stmt->execute(['%'.$_POST['search'].'%','%'.$_POST['search'].'%','%'.$_POST['search'].'%','%'.$_POST['search'].'%']);
 $i = 1;
+if ($result = $stmt->fetch() == NULL)
+{
+    echo "Empty";
+}
 while ($result = $stmt->fetch()){
     echo 'Result #'.$i.': <br />';
     echo 'Post title : '.htmlspecialchars($result['title']).'<br />';

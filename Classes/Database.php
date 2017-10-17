@@ -3,6 +3,8 @@ namespace Classes;
 
 class Database extends \PDO {
 
+    var $error_message;
+
     public function __construct($serverName,$userName,$DBPassword,$dbname,$port){
         $dsn='mysql:dbname='.$dbname.';host='.$serverName;
         $opt = [
@@ -85,9 +87,13 @@ class Database extends \PDO {
         }
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-        echo $sql.'<br />';
-        var_dump($values);
+//        echo $sql.'<br />';
+//        var_dump($values);
         return $stmt;
+    }
+
+    protected function HandleError($error){
+        $this->error_message = $error;
     }
 
 }

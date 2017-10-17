@@ -35,7 +35,72 @@ class DBAL extends Database{
             return $this->buildEditById($object, $id , $parameters);
     }
 
-}
+    public function isFieldUnique ($object, array $parameters) {
+        $stmt = $this->selectBy($object,$parameters);
+        if ($stmt->fetch()){
+            return false;
+        }
+        return true;
+    }
 
+    public function createUser ($object, array $parameters) {
+        // Checks for unique username
+        if (!$this->isFieldUnique($object, array('username'=>$parameters['username']))){
+            $this->HandleError('Account with this username already exist');
+            return false;
+        }
+        // Checks fields for emptiness
+        foreach ($parameters as $key=>$value){
+            if (!Users::fieldNotEmpty($value)){
+                $this->HandleError('Username or password is empty');
+                return false;
+            }
+        }
+        // Saves to database
+        try {
+             $this->save($object, '', $parameters);
+        } catch (\PDOException $e) {
+            echo 'smth else wrong: ', $e->getMessage(), "\n";
+            return false;
+        }
+        return true;
+    }
+
+
+    public function CheckLoginDB($object, array $parameters){
+        $result = $this->selectBy($object,$parameters);
+        if ($result->fetch()){
+            return true;
+        }
+        return false;
+    }
+
+    public function login($object, array $parameters){
+        // Checks fields for emptiness
+        foreach ($parameters as $key=>$value){
+            if (!Users::fieldNotEmpty($value)){
+                $this->HandleError('Username or password is empty');
+                return false;
+            }
+        }
+
+        //Checks username and pass in DB
+        if (!$this->CheckLoginDB($object, $parameters)){
+            $this->HandleError('Error logging in. The username or password does not match');
+            return false;
+        }
+
+        //Starts season
+        session_unset();
+        session_destroy();
+        session_start();
+
+        $_SESSION['username'] = $parameters['username'];
+        echo $_SESSION['username'];
+        return true;
+
+    }
+
+}
 
 ?>

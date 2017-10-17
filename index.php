@@ -5,6 +5,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
     <div class="container">
 <?php
 $posts = new \Classes\Post();
+$comment = new \Classes\Comment();
 $result = $dbal->selectAll($posts);
 while ($post = $result->fetch()) { ?>
 

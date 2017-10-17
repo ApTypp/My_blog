@@ -4,6 +4,7 @@ include_once (getRoot('/template/header.php')); // Header
 
 echo $_POST['body'];
 echo $_POST['post_id'];
+$comment = new \Classes\Comment();
 
 $parameters = array(
     'post_id'=>$_POST['post_id'],
