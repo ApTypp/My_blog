@@ -5,6 +5,7 @@
         <?php
         //$post = $db->selectId($_GET['id']);
         $posts = new \Classes\Post();
+        $comment = new \Classes\Comment();
         $result = $dbal->SelectBy($posts,array('id' => $_GET['id']));
         $post = $result->fetch();
             ?>
