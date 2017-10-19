@@ -62,7 +62,13 @@ class DBAL extends Database{
 
     public function CheckLoginDB($object, array $parameters){
         $result = $this->selectBy($object,$parameters);
-        if ($result->fetch()){
+        if ($acc = $result->fetch()){
+            //Starts season
+            session_unset();
+            session_destroy();
+            session_start();
+
+            $_SESSION['username'] = $acc['username'];
             return true;
         }
         return false;
@@ -75,13 +81,6 @@ class DBAL extends Database{
             $this->HandleError('Error logging in. The username or password does not match');
             return false;
         }
-
-        //Starts season
-        session_unset();
-        session_destroy();
-        session_start();
-
-        $_SESSION['username'] = $parameters['username'];
 //        echo $_SESSION['username'];
         return true;
 

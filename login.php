@@ -10,7 +10,7 @@ if ($dbal->login($user,$parameters)){ ?>
     <?php echo 'LOGGED IN';?>
     </div>
 <?php } else {
-    echo 'NOPE';
+//    echo 'NOPE';
     echo $dbal->error_message;
 }
 
