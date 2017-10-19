@@ -13,13 +13,5 @@ Class Users extends Entity {
     }
 
 
-    public static function fieldNotEmpty ($object){
-        if (empty($object)){
-            return false;
-        }
-        return true;
-    }
-
-
 }
 ?>

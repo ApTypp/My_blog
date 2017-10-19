@@ -35,8 +35,8 @@ class Database extends \PDO {
         array_push($values, $id);
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-        echo $sql.'<br />';
-        var_dump($values);
+//        echo $sql.'<br />';
+//        var_dump($values);
         return $stmt;
     }
 
@@ -57,8 +57,8 @@ class Database extends \PDO {
         $sql .= ')';
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-        echo $sql.'<br />';
-        var_dump($values);
+//        echo $sql.'<br />';
+//        var_dump($values);
         return $stmt;
     }
 

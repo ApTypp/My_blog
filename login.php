@@ -5,10 +5,11 @@ $user = new \Classes\Users();
 $parameters = array(
     'username'=>$_POST['name'],
     'password'=>$_POST['pass']);
-if ($dbal->login($user,$parameters)){
-    echo 'LOGGED IN';
-
-} else {
+if ($dbal->login($user,$parameters)){ ?>
+    <div class="container">
+    <?php echo 'LOGGED IN';?>
+    </div>
+<?php } else {
     echo 'NOPE';
     echo $dbal->error_message;
 }

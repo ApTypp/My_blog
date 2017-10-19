@@ -5,12 +5,15 @@ include_once (getRoot('/template/header.php')); // Header ?>
     'username'=>$_POST['username'],
     'password'=>$_POST['pass'],
     'date_created'=>$date);
+    if (!$validate->isValid($parameters)){
+        echo $validate->error_message;
+    } else {
     $user = new \Classes\Users();
        if ($dbal->createUser($user, $parameters)){
            echo '--- USER CREATED ---';
        } else {
            echo $dbal->error_message;
-       } ?>
+       }} ?>
 </div>
 
 <?php include_once(getRoot('/template/footer.php')); ?>
