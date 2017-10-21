@@ -1,5 +1,5 @@
 <?php
-
+namespace Classes;
 class Validator {
 
     public $errorMessage;
@@ -88,6 +88,5 @@ class Validator {
     }
 
 }
-$validate = new Validator();
 //$validate->isValid(array('username' => 'asss', 'password' => 'asdss%')); TEST
 ?>

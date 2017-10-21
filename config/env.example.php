@@ -1,11 +1,12 @@
 <?php
-require_once(__DIR__.'/../Classes/Database.php');
-require_once(__DIR__.'/../Classes/Entity.php');
-require_once(__DIR__.'/../Classes/Post.php');
-require_once(__DIR__ . '/../Classes/DBAL.php');
+
+function __autoload($className) {
+    $className = str_replace('..', '', $className);
+    require_once("$className.php");
+}
 
 // Site Title
-$site_title = 'qwe';
+$site_title = 'Blog';
 
 //Date and time
 date_default_timezone_set('Europe/Riga');
@@ -18,9 +19,9 @@ function getRoot($toWhere){
 function getDBAL()
 {
     $serverAddress = 'localhost';
-    $userName = 'dev';
+    $userName = '';
     $DBPassword = '';
-    $dbName = 'blog';
+    $dbName = '';
     $port = 3306;
 
     $dbal = new \Classes\DBAL($serverAddress, $userName, $DBPassword, $dbName,$port);
@@ -28,3 +29,4 @@ function getDBAL()
 }
 $dbal = getDBAL();
 
+?>
