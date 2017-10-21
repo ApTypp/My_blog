@@ -2,7 +2,7 @@
 
 class Validation {
 
-    public $error_message;
+    public $errorMessage;
 
     protected $rules = array(
         'username' => 'required|alpha_numeric|max_len,20|min_len,3',
@@ -21,7 +21,7 @@ class Validation {
     protected function validate_required($key,$value){
         if (empty($value)){
             $key = ucfirst($key);
-            $this->error_message = $key.' is empty.';
+            $this->errorMessage .= $key.' is empty.<br />';
             return false;
         }
 //        echo 'required good <br />';
@@ -31,7 +31,7 @@ class Validation {
     protected function validate_alpha_numeric($key, $value){
         if (!ctype_alnum($value)){
             $key = ucfirst($key);
-            $this->error_message = $key.' must contain only alpha-numeric characters.';
+            $this->errorMessage .= $key.' must contain only alpha-numeric characters.<br />';
             return false;
         }
 //        echo 'alpha_numeric good <br />';
@@ -40,7 +40,7 @@ class Validation {
 
     protected function validate_max_len($key, $value,$parameter){
         if (mb_strlen($value)>$parameter){
-            $this->error_message = 'Maximum length of '.$key.' must be less or equal to '.$parameter.' characters.';
+            $this->errorMessage .= 'Maximum length of '.$key.' must be less or equal to '.$parameter.' characters.<br />';
             return false;
         }
 //        echo 'max len is good <br />';
@@ -49,7 +49,7 @@ class Validation {
 
     protected function validate_min_len($key,$value,$parameter){
         if (mb_strlen($value)<$parameter){
-            $this->error_message = 'Minimum length of '.$key.' must be more or equal to '.$parameter.' characters.';
+            $this->errorMessage .= 'Minimum length of '.$key.' must be more or equal to '.$parameter.' characters.<br />';
             return false;
         }
 //        echo 'min len is good';
@@ -67,23 +67,21 @@ class Validation {
                         if (preg_match('/,/',$rule)){
                             $rule = $this->splitRulesByComma($rule);
                             $method = 'validate_'.$rule[0];
-                            if (!$this->$method($key,$value,$rule[1])){
-//                                echo $this->error_message;
-                                return false;
-                            }
+                            $this->$method($key,$value,$rule[1]);
                         } else {
                             $method = 'validate_'.$rule;
-                            if (!$this->$method($key,$value)){
-//                                echo $this->error_message;
-                                return false;
-                            }
+                            $this->$method($key,$value);
                         }
 
                     }
                 }
             }
         }
-
+        if (isset($this->errorMessage)){
+//            echo $this->errorMessage;
+            return false;
+        }
+        
         return true;
     }
 

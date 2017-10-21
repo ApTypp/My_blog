@@ -6,13 +6,13 @@ include_once (getRoot('/template/header.php')); // Header ?>
     'password'=>$_POST['pass'],
     'date_created'=>$date);
     if (!$validate->isValid($parameters)){
-        echo $validate->error_message;
+        echo $validate->errorMessage;
     } else {
     $user = new \Classes\Users();
        if ($dbal->createUser($user, $parameters)){
            echo '--- USER CREATED ---';
        } else {
-           echo $dbal->error_message;
+           echo $dbal->errorMessage;
        }} ?>
 </div>
 
