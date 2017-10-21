@@ -5,7 +5,8 @@ include_once (getRoot('/template/header.php')); // Header ?>
     'username'=>$_POST['username'],
     'password'=>$_POST['pass'],
     'date_created'=>$date);
-    if (!$validate->isValid($parameters)){
+    $rules=array();
+    if (!$validate->isValid($parameters,$rules)){
         echo $validate->errorMessage;
     } else {
     $user = new \Classes\Users();

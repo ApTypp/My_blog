@@ -1,6 +1,6 @@
 <?php
 
-class Validation {
+class Validator {
 
     public $errorMessage;
 
@@ -56,14 +56,16 @@ class Validation {
         return true;
     }
 
-    public function isValid (array $data) {
-
+    public function isValid (array $data, array $rules) {
+        if (empty($rules)){
+            $rules = $this->rules;
+        }
         foreach ($data as $key=>$value){
-            foreach ($this->rules as $key1=>$value1){
+            foreach ($rules as $key1=>$value1){
                 if ($key === $key1){
 //                    echo 'Smth finded: '.$key.'<br />';
-                    $rules = $this->splitRules($value1);
-                    foreach ($rules as $rule){
+                    $rulesList = $this->splitRules($value1);
+                    foreach ($rulesList as $rule){
                         if (preg_match('/,/',$rule)){
                             $rule = $this->splitRulesByComma($rule);
                             $method = 'validate_'.$rule[0];
@@ -86,6 +88,6 @@ class Validation {
     }
 
 }
-$validate = new Validation();
+$validate = new Validator();
 //$validate->isValid(array('username' => 'asss', 'password' => 'asdss%')); TEST
 ?>
