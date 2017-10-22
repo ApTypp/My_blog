@@ -5,10 +5,9 @@ include_once (getRoot('/template/header.php')); // Header
 echo $_POST['body'];
 echo $_POST['post_id'];
 $comment = new \Classes\Comment();
-
 $parameters = array(
     'post_id'=>$_POST['post_id'],
-    'author'=>'anonymous',   // Accounts is not ready yet
+    'author'=>$username,   // Accounts is not ready yet
     'comments_body'=>$_POST['body'],
     'date_created'=>$date);
 $sql = $dbal->save($comment, '', $parameters);

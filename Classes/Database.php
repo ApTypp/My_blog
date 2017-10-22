@@ -19,9 +19,27 @@ class Database extends \PDO {
         return 'SELECT * FROM '.$object->tableName;
     }
 
-    protected function buildDeleteById($object){
-        return 'DELETE FROM '.$object->tableName.' WHERE id = ?';
+    protected function buildDeleteBy($object, array $parameters){
+        $sql = 'DELETE FROM '.$object->tableName.' WHERE ';
+        $i = 0;
+        $values = array();
+        foreach($parameters as $key=>$value){
+            if($i === 0){
+                $sql .= $key." = ?";
+            } else {
+                $sql .= ' AND ';
+                $sql .= $key." = ?";
+            }
+            array_push($values, $value);
+            $i++;
+        }
+        echo $sql.'<br />';
+        print_r($values);
+        $stmt = $this->prepare($sql);
+        $stmt->execute($values);
+        return $stmt;
     }
+
 
     protected function buildEditById(Entity $object, $id, array $parameters){
         $sql = "UPDATE $object->tableName SET ";

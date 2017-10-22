@@ -26,7 +26,9 @@ while ($post = $result->fetch()) { ?>
             <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
             <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
         </div>
-        <div class="modal-footer"><?php
+        <div class="modal-footer">
+            Author: <?php echo $post['author']; ?> <br />
+            <?php
             if ($post['date_modified'] == NULL){
                 echo $post['date_created'];
             }

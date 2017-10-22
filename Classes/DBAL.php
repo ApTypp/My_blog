@@ -21,9 +21,11 @@ class DBAL extends Database{
     }
 
     public function deleteById(Entity $object, $id)  {
-        $stmt = $this->prepare($this->buildDeleteById($object));
-        $stmt->execute([$id]);
-        return $stmt;
+        return $this->buildDeleteBy($object,array('id' => $id));
+    }
+
+    public function deleteBy(Entity $object, array $parameters){
+        return $this->buildDeleteBy($object,$parameters);
     }
 
     public function save(Entity $object, $id, array $parameters)

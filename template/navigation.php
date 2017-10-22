@@ -2,6 +2,11 @@
 <?php include_once('config/env.php');
 $current_page = basename($_SERVER['PHP_SELF']);
 session_start();
+if (isset ($_SESSION['username'])){
+    $username = $_SESSION['username'];
+} else {
+    $username = 'anonymous';
+}
 ?>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container">

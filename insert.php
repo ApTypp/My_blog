@@ -4,6 +4,7 @@ $post = new \Classes\Post();
 $parameters = array(
     'title'=>$_POST['title'],
     'body'=>$_POST['post'],
+    'author'=>$username,
     'date_created'=>$date);
 $sql = $dbal->save($post, '', $parameters);
 header('Location: index.php');
