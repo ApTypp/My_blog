@@ -10,7 +10,7 @@ $parameters = array(
 if ($validate->isValid(array('title'=>$_POST['title'], 'post' => $_POST['post']),array('title' => 'required|max_len,200|min_len,1', 'post' => 'required|max_len,1000|min_len,1'))){
 $sql = $dbal->save($post, '', $parameters);
 header('Location: index'); } else {
-    echo $validate->errorMessage;
+    echo '<div class="container">'.$validate->errorMessage.'</div>';
 }
 
 include_once(getRoot('/template/footer.php')); ?>

@@ -13,6 +13,6 @@ if ($validate->isValid(array('comment' => $_POST['body']),array('comment' => 're
 $sql = $dbal->save($comment, '', $parameters);
 header('Location: ' . $_SERVER['HTTP_REFERER']); }
 else {
-    echo $validate->errorMessage;
+    echo '<div class="container">'.$validate->errorMessage.'</div>';
 }
 include_once(getRoot('/template/footer.php')); ?>
