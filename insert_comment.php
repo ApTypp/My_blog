@@ -9,7 +9,7 @@ $parameters = array(
     'author'=>$username,
     'comments_body'=>$_POST['body'],
     'date_created'=>$date);
-if ($validate->isValid(array('comment' => $_POST['body']),array('comment' => 'required|max_len,200|min_len,1'))){
+if ($validate->isValid(array('comment' => $_POST['body']),array('comment' => 'max_len,200|min_len,1'))){
 $sql = $dbal->save($comment, '', $parameters);
 header('Location: ' . $_SERVER['HTTP_REFERER']); }
 else {
