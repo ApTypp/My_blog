@@ -18,16 +18,20 @@
             <div class="dropdown-menu ">
                 <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Open</a>
                 <a class="dropdown-item" href = "#" data-toggle="modal" data-target="#Modal<?php echo $post['id'];?>">Read</a>
-                <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
+                <?php if ($username == $post['author']){ ?>
+                    <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
+                <?php } ?>
             </div>
         </div>
         <div class="container">
             <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
             <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
         </div>
-        <div class="modal-footer"><?php
+        <div class="modal-footer">
+            Author: <?php echo $post['author']; ?> <br />
+            <?php
             if ($post['date_modified'] == NULL){
                 echo $post['date_created'];
             }
@@ -44,10 +48,11 @@
                 <a style="margin-left: 5%"><strong><?php echo htmlspecialchars( $comments['author']); ?></strong></a>
                 <a class="float-right" style="margin-right: 5%"><?php echo $comments['date_created']; ?></a>
                 <p style="margin-left: 5%; margin-right: 5%"><?php echo htmlspecialchars( $comments['comments_body']); ?></p>
-                <div class="modal-footer">
-                    <a class="btn btn-secondary" href="delete_comment.php?id=<?php echo $comments['id'] ?>">Delete</a>
-                </div>
-                <?php
+                <?php if ($username == $comments['author']){ ?>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" href="delete_comment.php?id=<?php echo $comments['id'] ?>">Delete</a>
+                    </div>
+                <?php }
 
             }
         }
