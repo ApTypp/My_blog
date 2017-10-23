@@ -16,12 +16,12 @@
                 ...
             </button>
             <div class="dropdown-menu ">
-                <a class="dropdown-item" href="read_post.php?id=<?php echo $post['id'] ?>">Open</a>
+                <a class="dropdown-item" href="read_post?id=<?php echo $post['id'] ?>">Open</a>
                 <a class="dropdown-item" href = "#" data-toggle="modal" data-target="#Modal<?php echo $post['id'];?>">Read</a>
                 <?php if ($username == $post['author']){ ?>
-                    <a class="dropdown-item" href="edit_post.php?id=<?php echo $post['id'] ?>">Edit</a>
+                    <a class="dropdown-item" href="edit_post?id=<?php echo $post['id'] ?>">Edit</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="delete_post.php?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
+                    <a class="dropdown-item" href="delete_post?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
                 <?php } ?>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <p style="margin-left: 5%; margin-right: 5%"><?php echo htmlspecialchars( $comments['comments_body']); ?></p>
                 <?php if ($username == $comments['author']){ ?>
                     <div class="modal-footer">
-                        <a class="btn btn-secondary" href="delete_comment.php?id=<?php echo $comments['id'] ?>">Delete</a>
+                        <a class="btn btn-secondary" href="delete_comment?id=<?php echo $comments['id'] ?>">Delete</a>
                     </div>
                 <?php }
 
@@ -58,7 +58,7 @@
         }
 
         ?>
-        <form action="insert_comment.php" method="post">
+        <form action="insert_comment" method="post">
             <div class="form-group" style="margin-left: 5%; margin-right: 5%">
                 <textarea class="form-control" id="comment" rows="1" name="body" placeholder="Comment"></textarea>
                 <textarea name="post_id" hidden><?php echo $post['id'] ?></textarea>

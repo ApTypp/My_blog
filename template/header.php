@@ -12,5 +12,6 @@ include_once('../My_blog/config/env.php');
 </head>
 
 
-<?php include(getRoot('/template/navigation.php')); //Navigation Bar?>
+<?php include(getRoot('/template/navigation.php')); //Navigation Bar
+?>
 <body>

@@ -2,7 +2,7 @@
 include_once('config/env.php');
 include_once (getRoot('/template/header.php')); // Header ?>
     <div class="container">
-        <form action="sign_up_insert.php" method="post">
+        <form action="sign_up_insert" method="post">
             <div class="form-group">
                 <label for="Username">Username</label>
                 <input class="form-control" maxlength="20" id="Username" placeholder="Enter username" name="username" style="width: 20%">

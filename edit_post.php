@@ -9,7 +9,7 @@
     $post = $result->fetch();
     ?>
 
-    <form action="edit.php?id=<?php echo $id ?>" method="post">
+    <form action="edit?id=<?php echo $id ?>" method="post">
         <!-- Title -->
         <div class="form-group">
             <label for="title">Title for post</label>
@@ -21,7 +21,7 @@
             <textarea class="form-control" id="post" rows="3" name="post"><?php echo htmlspecialchars( $post['body']);?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
-        <a class="btn btn-secondary" href="index.php">Cancel</a>
+        <a class="btn btn-secondary" href="index">Cancel</a>
     </form>
 </div>
 
