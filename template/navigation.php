@@ -17,38 +17,37 @@ if (isset ($_SESSION['username'])){
                     <a class="nav-link <?php if ($current_page == "index.php"){ echo "active"; }?>" href="index">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post">Create a Post</a>
+                    <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post">Add a post</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-md-0" action="search" method="post">
-                <div class="col-auto">
-                    <input name="search" class="form-control" type="text" placeholder="Search">
-                </div>
-            </form>
             <?php if (empty($_SESSION['username'])){ ?>
             <form class="form-inline my-2 my-md-0" action="login" method="post" style="margin: 5%">
                 <input name="name" class="form-control" type="text" maxlength="20" placeholder="Username" style="width: 25%">
                 <input name="pass" class="form-control" type="password" maxlength="50" placeholder="Password" style="width: 25%">
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-user-circle" aria-hidden="true"></i> Login</button>
                 </div>
                 <div class="col-auto">
-                    <a href="sign_up" class="btn btn-outline-secondary">Sign up</a>
+                    <a href="sign_up" class="btn btn-outline-secondary"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign up</a>
                 </div>
             </form>
             <?php } else { ?>
 
             <form class="form-inline my-2 my-md-0" action="login" method="post" style="margin: 5%">
-                <p class="text-info">Logged in as: <?php echo $_SESSION['username']; ?></p>
+                <p class="text-info"><i class="fa fa-user-circle" aria-hidden="true"></i> Logged in as: <?php echo $_SESSION['username']; ?></p>
                 <div class="col-auto">
-                    <a href="logout" class="btn btn-outline-secondary">Logout</a>
+                    <a href="logout" class="btn btn-outline-secondary"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                 </div>
             </form>
 
             <?php } ?>
         </div>
     </div>
-
+    <form class="form-inline my-2 my-md-0" action="search" method="post">
+        <div class="col-auto">
+            <input name="search" class="form-control" type="text" placeholder="Search">
+        </div>
+    </form>
 </nav>
 
 
