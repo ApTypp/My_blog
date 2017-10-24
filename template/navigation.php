@@ -9,6 +9,7 @@ if (isset ($_SESSION['username'])){
 }
 ?>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="index"> <img src="images/blog-logo.png" alt="My Blog" style="width: 60%"> </a>
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarsExample02">
             <ul class="navbar-nav mr-auto">
