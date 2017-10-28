@@ -51,6 +51,9 @@ class DBAL extends Database{
             $this->HandleError('Account with this username already exist');
             return false;
         }
+        // Hash the password
+        $salt = Users::getSalt();
+        $parameters['password'] = crypt($parameters['password'],$salt);
         // Saves to database
         try {
              $this->save($object, '', $parameters);
@@ -63,15 +66,17 @@ class DBAL extends Database{
 
 
     public function CheckLoginDB($object, array $parameters){
-        $result = $this->selectBy($object,$parameters);
+        $result = $this->selectBy($object,['username' => $parameters['username']]);
         if ($acc = $result->fetch()){
-            //Starts season
-            session_unset();
-            session_destroy();
-            session_start();
+            if (hash_equals($acc['password'], crypt($parameters['password'], $acc['password']))) {
+                //Starts season
+                session_unset();
+                session_destroy();
+                session_start();
 
-            $_SESSION['username'] = $acc['username'];
-            return true;
+                $_SESSION['username'] = $acc['username'];
+                return true;
+            }
         }
         return false;
     }

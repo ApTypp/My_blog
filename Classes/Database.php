@@ -80,14 +80,6 @@ class Database extends \PDO {
         return $stmt;
     }
 
-    protected function runQuery($query){
-        return mysqli_query($this->dbc,$query);
-    }
-
-    public function escape_string($target){
-        mysqli_real_escape_string($this->dbc,$target);
-    }
-
     protected function buildSelectBy(Entity $object,array $parameters){
         $sql = $this->buildSelectAll($object);
         $i = 0;
