@@ -53,7 +53,7 @@ class DBAL extends Database{
         }
         // Hash the password
         $salt = Users::getSalt();
-        $parameters['password'] = crypt($parameters['password'],$salt);
+        $parameters['password'] = crypt($parameters['password'],'$2y$07$'.$salt.'$');
         // Saves to database
         try {
              $this->save($object, '', $parameters);

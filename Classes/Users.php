@@ -12,7 +12,7 @@ Class Users extends Entity {
         parent::__construct();
     }
 
-    public static function getSalt($bytes = 5){
+    public static function getSalt($bytes = 9){
         $bytes = random_bytes($bytes);
         return bin2hex($bytes);
     }
