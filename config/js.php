@@ -7,3 +7,5 @@
 
 <!-- fontawesome -->
 <script src="https://use.fontawesome.com/3ef54e1b84.js"></script>
+
+<script src="js/functions.js"></script>

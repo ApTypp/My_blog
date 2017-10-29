@@ -51,7 +51,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
                             <?php if ($username == $comments['author']){ ?>
                                 <div class="modal-footer">
                                     <a class="btn btn-secondary" href="delete_comment?id=<?php echo $comments['id'] ?>">Delete</a>
-                                    <a data-commentid="<?php echo $comments['id'] ?>" data-postid="<?php echo $post['id'] ?>" class="btn btn-dark btn-delete" href="#">Delete with AJAX</a>
+                                    <a data-commentid="<?php echo $comments['id'] ?>" data-postid="<?php echo $post['id'] ?>" class="btn btn-dark btn-deleteComment" href="#">Delete with AJAX</a>
                                 </div>
                             <?php }
 

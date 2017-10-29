@@ -18,9 +18,7 @@ $(document).ready(function () {
                 alert(errorThrown);
             }
         });
-    });
-
-    $('.post').on('click', '.btn-delete', function (event) {
+    }).on('click', '.btn-deleteComment', function (event) {
         event.preventDefault();
         var postId = $(this).data('postid');
         var commId = $(this).data('commentid');
@@ -32,4 +30,5 @@ $(document).ready(function () {
             },
         });
     });
+
 });
