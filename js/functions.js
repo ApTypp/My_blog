@@ -1,3 +1,7 @@
+function refresh(element) {
+    $(element).load(document.URL +  ' '+element);
+}
+
 $(document).ready(function () {
 
     $('.post').on('click', '.btn-comment', function () {
@@ -8,7 +12,7 @@ $(document).ready(function () {
             url: 'insert_comment_ajax?id='+id+'&body='+body,
             success: function(){
                 console.log('successful, id='+id+' body = '+body);
-                $('#commentsDiv'+id).load(document.URL +  ' #commentsDiv'+id);
+                refresh('#commentsDiv'+id);
             },
             error: function(xhr, textStatus, errorThrown){
                 alert(errorThrown);
