@@ -22,9 +22,6 @@ if (isset ($_SESSION['username'])){
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target=".addPostModal">Add a post</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Add a post with AJAX (jQuery)</a>-->
-<!--                </li>-->
             </ul>
             <?php if (empty($_SESSION['username'])){ ?>
             <form class="form-inline my-2 my-md-0" action="login" method="post" style="margin: 5%">
@@ -34,7 +31,7 @@ if (isset ($_SESSION['username'])){
                     <button type="submit" class="btn btn-outline-primary"><i class="fa fa-user-circle" aria-hidden="true"></i> Login</button>
                 </div>
                 <div class="col-auto">
-                    <a href="sign_up" class="btn btn-outline-secondary"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign up</a>
+                    <a href="sign_up" class="btn btn-outline-secondary <?php if ($current_page == "sign_up.php"){ echo "active"; }?>"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign up</a>
                 </div>
             </form>
             <?php } else { ?>
