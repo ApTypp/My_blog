@@ -1,7 +1,9 @@
 <?php
 include_once('config/env.php');
 include_once (getRoot('/template/header.php')); // Header
-
+$post = new \Classes\Post();
+$result = $dbal->selectById($post,$_POST['post_id']);
+if (!empty($result->fetch())){
 $comment = new \Classes\Comment();
 $validate = new \Classes\Validator();
 $parameters = array(
@@ -14,5 +16,5 @@ $sql = $dbal->save($comment, '', $parameters);
 header('Location: ' . $_SERVER['HTTP_REFERER']); }
 else {
     echo '<div class="container">'.$validate->errorMessage.'</div>';
-}
+}} else { echo 'Do not try to change id, man';}
 include_once(getRoot('/template/footer.php')); ?>
