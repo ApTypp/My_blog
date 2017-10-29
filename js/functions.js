@@ -19,4 +19,17 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.post').on('click', '.btn-delete', function (event) {
+        event.preventDefault();
+        var postId = $(this).data('postid');
+        var commId = $(this).data('commentid');
+        $.ajax({
+            url: 'delete_comment_ajax?id='+commId,
+            success: function(){
+                console.log('successful, post id='+postId+' comment id= '+commId);
+                refresh('#commentsDiv'+postId);
+            },
+        });
+    });
 });
