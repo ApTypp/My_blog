@@ -89,5 +89,5 @@ while ($post = $result->fetch()) { ?>
         </div>
     </div>
 <?php } ?>
-
+    </div>
 <?php include_once(getRoot('/template/footer.php')); ?>
