@@ -29,7 +29,11 @@ include_once (getRoot('/template/header.php')); // Header ?>
                 </div>
                 <div class="container">
                     <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                    <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
+                    <?php if (!(strlen($post['body']) > 1000)) { ?>
+                        <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
+                    <?php } else {?>
+                        <p class="lead text-center"><?php echo htmlspecialchars( substr($post['body'], 0, 1000)).' ...';?><a href = "#" data-toggle="modal" data-target="#ModalRead<?php echo $post['id'];?>"> Read more</a> </p>
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     Author: <?php echo $post['author']; ?> <br />
@@ -76,9 +80,10 @@ include_once (getRoot('/template/header.php')); // Header ?>
                 </div>
 
             </div>
+
             <!-- Modal (read post) -->
             <div class="modal fade" id="ModalRead<?php echo $post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel"><?php echo htmlspecialchars($post['title']);?></h5>

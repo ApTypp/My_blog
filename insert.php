@@ -7,7 +7,7 @@ $parameters = array(
     'body'=>$_POST['post'],
     'author'=>$username,
     'date_created'=>$date);
-if ($validate->isValid(array('title'=>$_POST['title'], 'post' => $_POST['post']),array('title' => 'max_len,200|min_len,1', 'post' => 'max_len,1000|min_len,1'))){
+if ($validate->isValid(array('title'=>$_POST['title'], 'post' => $_POST['post']),array('title' => 'max_len,200|min_len,1', 'post' => 'max_len,5000|min_len,1'))){
 $sql = $dbal->save($post, '', $parameters);
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
