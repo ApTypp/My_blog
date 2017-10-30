@@ -16,11 +16,11 @@ if (isset ($_SESSION['username'])){
                 <li class="nav-item">
                     <a class="nav-link <?php if ($current_page == "index.php"){ echo "active"; }?>" href="index">Posts</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link --><?php //if ($current_page == "add_a_post.php"){ echo "active"; }?><!--" href="add_a_post">Add a post</a>-->
-<!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target=".addPostModal">Add a post</a>
+                    <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post">Add a post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target=".addPostModal">Add a post with modal frame</a>
                 </li>
             </ul>
             <?php if (empty($_SESSION['username'])){ ?>
