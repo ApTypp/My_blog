@@ -7,7 +7,9 @@ include_once (getRoot('/template/header.php')); // Header ?>
         $posts = new \Classes\Post();
         $comment = new \Classes\Comment();
         $result = $dbal->selectAll($posts);
-        while ($post = $result->fetch()) { ?>
+        $posts = $result->fetchAll();
+        krsort($posts);
+        foreach ($posts as $key => $post) { ?>
 
             <div class="jumbotron jumbotron-fluid post" style="overflow-x:hidden">
                 <div class="btn-group d-flex align-items-end flex-column" style="right: 10px; top: -45px;">
