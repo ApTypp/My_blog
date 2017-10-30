@@ -1,4 +1,4 @@
-<!-- Post adding modal frame -->
+<!-- Adding a post, modal frame -->
 
 <div class="modal fade addPostModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -16,6 +16,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Create a post</button>
                     <button type="reset" class="btn btn-secondary">Clear</button>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -16,9 +16,10 @@ include_once (getRoot('/template/header.php')); // Header ?>
                     </button>
                     <div class="dropdown-menu ">
                         <a class="dropdown-item" href="read_post?id=<?php echo $post['id'] ?>">Open</a>
-                        <a class="dropdown-item" href = "#" data-toggle="modal" data-target="#Modal<?php echo $post['id'];?>">Read</a>
+                        <a class="dropdown-item" href = "#" data-toggle="modal" data-target="#ModalRead<?php echo $post['id'];?>">Read</a>
                         <?php if ($username == $post['author']){ ?>
                             <a class="dropdown-item" href="edit_post?id=<?php echo $post['id'] ?>">Edit</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".editPostModal<?php echo $post['id'];?>">Edit (modal)</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="delete_post?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
                         <?php } ?>
@@ -50,8 +51,8 @@ include_once (getRoot('/template/header.php')); // Header ?>
                             <p style="margin-left: 5%; margin-right: 5%"><?php echo htmlspecialchars( $comments['comments_body']); ?></p>
                             <?php if ($username == $comments['author']){ ?>
                                 <div class="modal-footer">
-                                    <a class="btn btn-secondary" href="delete_comment?id=<?php echo $comments['id'] ?>">Delete</a>
-                                    <a data-commentid="<?php echo $comments['id'] ?>" data-postid="<?php echo $post['id'] ?>" class="btn btn-dark btn-deleteComment" href="#">Delete with AJAX</a>
+                                    <a class="btn btn-secondary btn-sm" href="delete_comment?id=<?php echo $comments['id'] ?>">Delete</a>
+                                    <a data-commentid="<?php echo $comments['id'] ?>" data-postid="<?php echo $post['id'] ?>" class="btn btn-dark btn-sm btn-deleteComment" href="#">Delete with AJAX</a>
                                 </div>
                             <?php }
 
@@ -66,15 +67,15 @@ include_once (getRoot('/template/header.php')); // Header ?>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Add comment</button>
-                            <button data-id="<?php echo $post['id'] ?>" type="button" class="btn btn-info btn-comment">Add comment with AJAX</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Add comment</button>
+                            <a data-id="<?php echo $post['id'] ?>" type="button" href="#" class="btn btn-info btn-sm btn-comment">Add comment with AJAX</a>
                         </div>
                     </form>
                 </div>
 
             </div>
             <!-- Modal (read post) -->
-            <div class="modal fade" id="Modal<?php echo $post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="ModalRead<?php echo $post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -88,6 +89,32 @@ include_once (getRoot('/template/header.php')); // Header ?>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            Modal (edit post)-->
+            <div class="modal fade editPostModal<?php echo $post['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="container" style="margin: 2%; width: 96%">
+                            <form action="edit?id=<?php echo $post['id'] ?>" method="post">
+                                <!-- Title -->
+                                <div class="form-group">
+                                    <label for="title">Title for post</label>
+                                    <textarea class="form-control" id="title" rows="1" name="title"><?php echo htmlspecialchars( $post['title']);?></textarea>
+                                </div>
+                                <!-- Main post text -->
+                                <div class="form-group">
+                                    <label for="post">Main text</label>
+                                    <textarea class="form-control" id="post" rows="3" name="post"><?php echo htmlspecialchars( $post['body']);?></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

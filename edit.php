@@ -12,23 +12,10 @@ if ($result['author'] == $username) {
         'body' => $_POST['post'],
         'date_modified' => $date);
     $sql = $dbal->save($post, $_GET['id'], $parameters);
-}
-    if(!empty($sql)) {
-        ?>
-        <div class="container">
-            <h1 class="display-6">Amendments have been made successfully.</h1>
-        </div>
-        <?php
-    }
-
-    else { ?>
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else { ?>
         <div class="container">
             <h1 class="display-6">Nope</h1>
         </div>
-        <?php
-    }
-//        header('refresh:1,url=index.php');
-    ?>
-
-
-<?php include_once(getRoot('/template/footer.php')); ?>
+        <?php }
+        include_once(getRoot('/template/footer.php')); ?>

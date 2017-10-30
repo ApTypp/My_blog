@@ -1,6 +1,6 @@
-<!-- BOOTSTRAP NAV BAR  -->
 <?php include_once('config/env.php');
 $current_page = basename($_SERVER['PHP_SELF']);
+// Login check
 session_start();
 if (isset ($_SESSION['username'])){
     $username = $_SESSION['username'];
@@ -8,6 +8,7 @@ if (isset ($_SESSION['username'])){
     $username = 'anonymous';
 }
 ?>
+<!-- BOOTSTRAP NAV BAR  -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="index"> <img src="images/blog-logo.png" alt="My Blog" style="width: 60%"> </a>
     <div class="container">
@@ -17,10 +18,10 @@ if (isset ($_SESSION['username'])){
                     <a class="nav-link <?php if ($current_page == "index.php"){ echo "active"; }?>" href="index">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post">Add a post</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target=".addPostModal">Add a post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target=".addPostModal">Add a post with modal frame</a>
+                    <a class="nav-link <?php if ($current_page == "add_a_post.php"){ echo "active"; }?>" href="add_a_post">Add a post (new page)</a>
                 </li>
             </ul>
             <?php if (empty($_SESSION['username'])){ ?>
