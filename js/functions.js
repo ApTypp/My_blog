@@ -36,4 +36,48 @@ $(document).ready(function () {
         });
     });
 
+        // Upvote button
+    $('.vote').on('click', '.btn-upvote', function () {
+        var id = $(this).data('id');
+        var downvote = $('#btn-downvote-'+id);
+        var uvselected = $(this).data('selected');
+        var dvselected = downvote.data('selected');
+        var count = $('#votecount'+id).text();
+        if (dvselected === 0) {
+            $(this).addClass('text-success');
+            $(this).data('selected', 1);
+            if (uvselected === 0){
+                $('#votecount'+id).text(++count);
+            }
+        } else {
+            downvote.data('selected',0);
+            downvote.removeClass('text-danger');
+            $('#votecount'+id).text(++count);
+        }
+        $.ajax ({
+            url: 'vote?count='+count+'&uvselected='+$(this).data('selected')+'&dvselected='+downvote.data('selected')+'&id='+id
+        });
+        // Downvote button
+    }).on('click','.btn-downvote', function () {
+        var id = $(this).data('id');
+        var upvote = $('#btn-upvote-'+id);
+        var uvselected = upvote.data('selected');
+        var dvselected = $(this).data('selected');
+        var count = $('#votecount'+id).text();
+        if (uvselected === 0) {
+            $(this).addClass('text-danger');
+            $(this).data('selected', 1);
+            if (dvselected === 0){
+                $('#votecount'+id).text(--count);
+            }
+        } else {
+            upvote.data('selected',0);
+            upvote.removeClass('text-success');
+            $('#votecount'+id).text(--count);
+        }
+        $.ajax ({
+            url: 'vote?count='+count+'&dvselected='+$(this).data('selected')+'&uvselected='+upvote.data('selected')+'&id='+id
+        });
+    })
+
 });

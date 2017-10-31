@@ -12,4 +12,8 @@
         background-color: #f9f9f9;
         border-top: .05rem solid #e5e5e5;
     }
+    .vote {
+        margin-left: 13%;
+
+    }
 </style>
