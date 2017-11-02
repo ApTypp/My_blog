@@ -36,6 +36,19 @@ $(document).ready(function () {
         });
     });
 
+    $('.post').on('click','.btn-delpost', function (event) {
+        event.preventDefault();
+       var id = $(this).data('id');
+       $.ajax ({
+           url: 'delete_post?id='+id+'&ajax=1',
+           success: function () {
+               refresh('#posts');
+           }
+
+       })
+
+    });
+
         // Upvote button
     $('.vote').on('click', '.btn-upvote', function () {
         var id = $(this).data('id');

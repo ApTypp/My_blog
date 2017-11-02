@@ -9,5 +9,7 @@ if ($result['author'] == $username){
 $dbal->deleteById($post,$_GET['id']);
 $dbal->deleteBy($comment,array('post_id' => $_GET['id']));
 }
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+if (empty($_GET['ajax'])) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
 ?>

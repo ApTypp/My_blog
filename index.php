@@ -19,7 +19,9 @@ if (!empty($_SESSION['username'])) {
 $vote_class = new \Classes\Vote();
 
 
-krsort($posts);
+krsort($posts); ?>
+<div id="posts">
+<?php
 foreach ($posts as $key => $post) {
     if (!empty($_SESSION['username'])) {
         $result = $dbal->selectBy($vote_class, ['post_id' => $post['id'], 'user_id' => $user['id']]);
@@ -45,17 +47,16 @@ foreach ($posts as $key => $post) {
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target=".editPostModal<?php echo $post['id'];?>">Edit (modal)</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="delete_post?id=<?php echo $post['id'] ?>"> <!-- onclick="return confirm('Are you sure?')" -->Delete</a>
+                        <a class="dropdown-item btn-delpost" data-id="<?php echo $post['id'] ?>" href="#">Delete with AJAX</a>
                     <?php } ?>
                 </div>
             </div>
-            <div class="container">
                 <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
                 <?php if (!(strlen($post['body']) > 1000)) { ?>
                     <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
                 <?php } else {?>
                     <p class="lead text-center"><?php echo htmlspecialchars( substr($post['body'], 0, 1000)).' ...';?><a href = "#" data-toggle="modal" data-target="#ModalRead<?php echo $post['id'];?>"> Read more</a> </p>
                 <?php } ?>
-            </div>
             <div class="modal-footer">
                 Author: <?php echo $post['author']; ?> <br />
                 <?php
@@ -148,5 +149,6 @@ foreach ($posts as $key => $post) {
                 </div>
             </div>
         </div>
+    </div>
 <?php } ?>
 <?php include_once(getRoot('/template/footer.php')); ?>
