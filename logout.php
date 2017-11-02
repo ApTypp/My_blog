@@ -7,5 +7,8 @@ session_destroy(); ?>
 <div class="container">
 <?php echo 'LOGGED OUT';?>
 </div>
+<script type="text/javascript">
+    refresh('.navbar-collapse');
+</script>
 <?php //header('Location: index.php');
 include_once(getRoot('/template/footer.php')); ?>

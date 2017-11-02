@@ -7,12 +7,16 @@ $parameters = array(
     'username'=>$_POST['name'],
     'password'=>$_POST['pass']);
 if ($dbal->login($user,$parameters)){
-echo 'LOGGED IN';} else {
-//    echo 'NOPE';
+echo 'LOGGED IN';
+?>
+</div>
+<script type="text/javascript">
+    refresh('.navbar-collapse');
+</script>
+<?php
+} else {
     echo $dbal->error_message;
 }
 
 
-?>
-</div>
-<?php include_once(getRoot('/template/footer.php')); ?>
+include_once(getRoot('/template/footer.php')); ?>
