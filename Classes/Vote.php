@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-class Vote extends Post {
+class Vote extends Entity {
 
     public $tableName = 'vote';
 

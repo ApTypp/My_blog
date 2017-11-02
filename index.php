@@ -27,9 +27,9 @@ foreach ($posts as $key => $post) {
     }
     ?>
     <div class="vote float-left">
-        <button id="btn-upvote-<?php echo $post['id'];?>" data-selected="<?php if ($vote['status'] == 1) { echo 1; } else {echo 0;} ?>" data-id="<?php echo $post['id'];?>" type="button" class="btn btn-light btn-upvote <?php if ($vote['status'] == 1) { echo 'text-success'; } ?>" <?php if (empty($_SESSION['username'])) { echo 'disabled'; } ?>><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></button>
+        <button id="btn-upvote-<?php echo $post['id'];?>" data-selected="<?php if (!empty($_SESSION['username'])) {if ($vote['status'] == 1) { echo 1; } else {echo 0;}} ?>" data-id="<?php echo $post['id'];?>" type="button" class="btn btn-light btn-upvote <?php if ($vote['status'] == 1) { echo 'text-success'; } ?>" <?php if (empty($_SESSION['username'])) { echo 'disabled'; } ?>><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></button>
         <div class="text-center"><h4 id="votecount<?php echo $post['id'];?>"><?php echo $post['votecount'] ?></h4></div>
-        <button id="btn-downvote-<?php echo $post['id'];?>" data-selected="<?php if ($vote['status'] == -1) { echo 1; } else {echo 0;} ?>" data-id="<?php echo $post['id'];?>" type="button" class="btn btn-light btn-downvote <?php if ($vote['status'] == -1) { echo 'text-danger'; } ?>" <?php if (empty($_SESSION['username'])) { echo 'disabled'; } ?>><i class="fa fa-arrow-circle-down fa-2x" aria-hidden="true"></i></button>
+        <button id="btn-downvote-<?php echo $post['id'];?>" data-selected="<?php if (!empty($_SESSION['username'])) {if ($vote['status'] == -1) { echo 1; } else {echo 0;}} ?>" data-id="<?php echo $post['id'];?>" type="button" class="btn btn-light btn-downvote <?php if ($vote['status'] == -1) { echo 'text-danger'; } ?>" <?php if (empty($_SESSION['username'])) { echo 'disabled'; } ?>><i class="fa fa-arrow-circle-down fa-2x" aria-hidden="true"></i></button>
     </div>
     <div class="container">
         <div class="jumbotron jumbotron-fluid post" style="overflow-x:hidden">
