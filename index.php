@@ -20,7 +20,7 @@ $vote_class = new \Classes\Vote();
 
 
 krsort($posts); ?>
-<div id="posts">
+    <div id="posts">
 <?php
 foreach ($posts as $key => $post) {
     if (!empty($_SESSION['username'])) {
@@ -51,21 +51,22 @@ foreach ($posts as $key => $post) {
                     <?php } ?>
                 </div>
             </div>
-                <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
-                <?php if (!(strlen($post['body']) > 1000)) { ?>
-                    <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
-                <?php } else {?>
-                    <p class="lead text-center"><?php echo htmlspecialchars( substr($post['body'], 0, 1000)).' ...';?><a href = "#" data-toggle="modal" data-target="#ModalRead<?php echo $post['id'];?>"> Read more</a> </p>
-                <?php } ?>
+            <h1 class="display-6 text-center"><?php echo htmlspecialchars( $post['title']);?> </h1>
+            <?php if (!(strlen($post['body']) > 1000)) { ?>
+                <p class="lead text-center"><?php echo htmlspecialchars( $post['body']);?> </p>
+            <?php } else {?>
+                <p class="lead text-center"><?php echo htmlspecialchars( substr($post['body'], 0, 1000)).' ...';?><a href = "#" data-toggle="modal" data-target="#ModalRead<?php echo $post['id'];?>"> Read more</a> </p>
+            <?php } ?>
             <div class="modal-footer">
-                Author: <?php echo $post['author']; ?> <br />
-                <?php
-                if ($post['date_modified'] == NULL){
-                    echo $post['date_created'];
-                }
-                else {
-                    echo 'Modified: '.$post['date_modified'];
-                } ?>
+                <i class="fas fa-user"> <?php echo $post['author']; ?></i> <br />
+                <i class="fas fa-calendar-alt text-secondary">
+                    <?php
+                    if ($post['date_modified'] == NULL){
+                        echo $post['date_created'];
+                    }
+                    else {
+                        echo 'Modified: '.$post['date_modified'];
+                    } ?></i>
             </div>
             <div id="commentsDiv<?php echo $post['id'] ?>">
                 <?php
@@ -74,8 +75,8 @@ foreach ($posts as $key => $post) {
                     if ($comments['post_id'] === $post['id']){ ?>
                         <hr>
 
-                        <a style="margin-left: 5%"><strong><?php echo htmlspecialchars( $comments['author']); ?></strong></a>
-                        <a class="float-right" style="margin-right: 5%"><?php echo $comments['date_created']; ?></a>
+                        <span style="margin-left: 5%"><i class="fas fa-user"><?php echo htmlspecialchars( ' '.$comments['author']); ?></i></span>
+                        <span class="float-right" style="margin-right: 5%"><i class="fas fa-calendar-alt text-secondary"><?php echo ' '.$comments['date_created']; ?></i></span>
                         <p style="margin-left: 5%; margin-right: 5%"><?php echo htmlspecialchars( $comments['comments_body']); ?></p>
                         <?php if ($username == $comments['author']){ ?>
                             <div class="modal-footer">
@@ -104,51 +105,51 @@ foreach ($posts as $key => $post) {
         </div>
     </div>
 
-        <!-- Modal (read post) -->
-        <div class="modal fade" id="ModalRead<?php echo $post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?php echo htmlspecialchars($post['title']);?></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <?php echo htmlspecialchars($post['body']);?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
+    <!-- Modal (read post) -->
+    <div class="modal fade" id="ModalRead<?php echo $post['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><?php echo htmlspecialchars($post['title']);?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php echo htmlspecialchars($post['body']);?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--            Modal (edit post)-->
-        <div class="modal fade editPostModal<?php echo $post['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="container" style="margin: 2%; width: 96%">
-                        <form action="edit?id=<?php echo $post['id'] ?>" method="post">
-                            <!-- Title -->
-                            <div class="form-group">
-                                <label for="title">Title for post</label>
-                                <textarea class="form-control" id="title" rows="1" name="title"><?php echo htmlspecialchars( $post['title']);?></textarea>
-                            </div>
-                            <!-- Main post text -->
-                            <div class="form-group">
-                                <label for="post">Main text</label>
-                                <textarea class="form-control" id="post" rows="3" name="post"><?php echo htmlspecialchars( $post['body']);?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                            <div class="text-right">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
+    <!--            Modal (edit post)-->
+    <div class="modal fade editPostModal<?php echo $post['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container" style="margin: 2%; width: 96%">
+                    <form action="edit?id=<?php echo $post['id'] ?>" method="post">
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label for="title">Title for post</label>
+                            <textarea class="form-control" id="title" rows="1" name="title"><?php echo htmlspecialchars( $post['title']);?></textarea>
+                        </div>
+                        <!-- Main post text -->
+                        <div class="form-group">
+                            <label for="post">Main text</label>
+                            <textarea class="form-control" id="post" rows="3" name="post"><?php echo htmlspecialchars( $post['body']);?></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 <?php } ?>
 <?php include_once(getRoot('/template/footer.php')); ?>

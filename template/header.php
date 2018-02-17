@@ -1,5 +1,5 @@
 <?php
-include_once('../My_blog/config/env.php');
+include_once('config/env.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
