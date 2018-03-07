@@ -56,15 +56,12 @@ class Database extends \PDO {
         array_push($values, $id);
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-//        echo $sql.'<br />';
-//        var_dump($values);
         return $stmt;
     }
 
     protected function buildInsert(Entity $object, array $parameters){
         $sql = "INSERT INTO $object->tableName (";
         $values = array();
-        //INSERT INTO posts (title, post, add_date) VALUES ('$post_title','$post', '$date')
         foreach ($parameters as $key=>$value){
             $sql .= $key.",";
             array_push($values, $value);
@@ -78,8 +75,6 @@ class Database extends \PDO {
         $sql .= ')';
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-//        echo $sql.'<br />';
-//        var_dump($values);
         return $stmt;
     }
 
@@ -100,8 +95,6 @@ class Database extends \PDO {
         }
         $stmt = $this->prepare($sql);
         $stmt->execute($values);
-//        echo $sql.'<br />';
-//        var_dump($values);
         return $stmt;
     }
 

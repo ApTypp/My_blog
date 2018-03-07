@@ -10,8 +10,13 @@ class Comment extends Entity {
 
     public function __construct()
     {
-        $this->tableName='comments';
+        $this->setTableName('comments');
         parent::__construct();
+    }
+
+    public function getPostComments($post){
+        $dbal = new DBAL();
+        return $dbal->selectBy($this,['post_id' => $post['id']])->fetchAll();
     }
 
 }

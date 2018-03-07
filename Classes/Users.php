@@ -4,12 +4,8 @@ namespace Classes;
 
 Class Users extends Entity {
 
-//
-//    public $post_id;
-//    public $body;
-//    public $author = 'Unknown';
-    public function __construct()
-    {   $this->tableName='users';
+    public function __construct(){
+        $this->setTableName('users');
         parent::__construct();
     }
 
@@ -67,7 +63,24 @@ Class Users extends Entity {
             return false;
         }
         return true;
+    }
 
+    public function getUser(){
+        $dbal = new DBAL();
+        if (empty($_SESSION['username'])){
+            return null;
+        }
+        return $dbal->selectBy($this, ['username' => $_SESSION['username']])->fetch();
+    }
+
+    public function getUsername(){
+        $user = $this->getUser();
+        return $user['username'];
+    }
+
+    public function getUserId(){
+        $user = $this->getUser();
+        return $user['id'];
     }
 
 
