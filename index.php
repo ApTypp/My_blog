@@ -22,6 +22,7 @@ $vote_class = new \Classes\Vote();
 krsort($posts); ?>
     <div id="posts">
 <?php
+
 foreach ($posts as $key => $post) {
     if (!empty($_SESSION['username'])) {
         $result = $dbal->selectBy($vote_class, ['post_id' => $post['id'], 'user_id' => $user['id']]);

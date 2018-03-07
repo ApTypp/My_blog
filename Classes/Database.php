@@ -1,18 +1,21 @@
 <?php
 namespace Classes;
 
+use config\DatabaseConfig;
+
 class Database extends \PDO {
 
     var $error_message;
 
-    public function __construct($serverName,$userName,$DBPassword,$dbname,$port){
-        $dsn='mysql:dbname='.$dbname.';host='.$serverName;
+    public function __construct(){
+        $dbconfig = new DatabaseConfig;
+        $dsn='mysql:dbname='.$dbconfig->getDbName().';host='.$dbconfig->getServerAddress();
         $opt = [
             \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
             \PDO::ATTR_EMULATE_PREPARES   => false,
         ];
-        parent::__construct($dsn,$userName,$DBPassword,$opt);
+        parent::__construct($dsn,$dbconfig->getUserName(),$dbconfig->getDBPassword(),$opt);
     }
 
     protected function buildSelectAll(Entity $object){
@@ -100,10 +103,6 @@ class Database extends \PDO {
 //        echo $sql.'<br />';
 //        var_dump($values);
         return $stmt;
-    }
-
-    protected function HandleError($error){
-        $this->error_message = $error;
     }
 
 }

@@ -8,10 +8,12 @@ $result = $dbal->selectBy($post,array('id' => $_GET['id']));
 $result = $result->fetch();
 if ($result['author'] == $username) {
     $parameters = array(
+        'id'=> $_GET['id'],
         'title' => $_POST['title'],
         'body' => $_POST['post'],
-        'date_modified' => $date);
-    $sql = $dbal->save($post, $_GET['id'], $parameters);
+        'date_modified' => $date
+    );
+    $sql = $dbal->save($post, $parameters);
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else { ?>
         <div class="container">

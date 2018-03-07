@@ -6,7 +6,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
 $parameters = array(
     'username'=>$_POST['name'],
     'password'=>$_POST['pass']);
-if ($dbal->login($user,$parameters)){
+if ($user->login($user,$parameters)){
 echo 'LOGGED IN';
 ?>
 </div>

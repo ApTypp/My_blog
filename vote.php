@@ -5,7 +5,7 @@ include_once (getRoot('/template/header.php')); // Header
 $votecount = $_GET['count'];
 $uvselected = $_GET['uvselected'];
 $dvselected = $_GET['dvselected'];
-$postid = $_GET['id'];
+$postId = $_GET['id'];
 
 $post = new \Classes\Post();
 
@@ -16,11 +16,8 @@ $user = $result->fetch();
 
 // Information adout post vote
 $vote_class = new \Classes\Vote();
-$result = $dbal->selectBy($vote_class,['post_id'=>$postid, 'user_id' => $user['id']]);
+$result = $dbal->selectBy($vote_class,['post_id'=>$postId, 'user_id' => $user['id']]);
 $vote = $result->fetch();
-
-// Insert posts vote amount into db
-// $dbal->save($post, $postid, ['votecount' => $votecount]);
 
 // Set status
 $status = 0;
@@ -33,10 +30,10 @@ if ($uvselected == 1){
 // Check current status of users vote
 if (empty($vote)){
     // Save vote and votecount
-    $dbal->save($vote_class,'', ['user_id' => $user['id'], 'post_id' => $postid, 'status' => $status]);
+    $dbal->save($vote_class, ['user_id' => $user['id'], 'post_id' => $postId, 'status' => $status]);
 } else {
-    $dbal->save($vote_class, $vote['id'], ['status' => $status]);
+    $dbal->save($vote_class, ['id'=> $vote['id'],'status' => $status]);
 }
-$dbal->save($post, $postid, ['votecount' => $votecount]);
+$dbal->save($post, ['id'=>$postId, 'votecount' => $votecount]);
 
 include_once(getRoot('/template/footer.php')); ?>

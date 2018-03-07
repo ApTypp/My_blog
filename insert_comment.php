@@ -12,7 +12,7 @@ $parameters = array(
     'comments_body'=>$_POST['body'],
     'date_created'=>$date);
 if ($validate->isValid(array('comment' => $_POST['body']),array('comment' => 'max_len,200|min_len,1'))){
-$sql = $dbal->save($comment, '', $parameters);
+$sql = $dbal->save($comment, $parameters);
 header('Location: ' . $_SERVER['HTTP_REFERER']); }
 else {
     echo '<div class="container">'.$validate->errorMessage.'</div>';

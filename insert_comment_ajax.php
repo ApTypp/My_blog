@@ -12,7 +12,7 @@ $parameters = array(
     'comments_body'=>$_GET['body'],
     'date_created'=>$date);
 if ($validate->isValid(array('comment' => $_GET['body']),array('comment' => 'max_len,200|min_len,1'))){
-$sql = $dbal->save($comment, '', $parameters);
+$sql = $dbal->save($comment, $parameters);
 } else {
     header('HTTP/1.1 500 '.substr($validate->errorMessage,0,-6));
 }} else { header('HTTP/1.1 500 Do not try to change id, man');}

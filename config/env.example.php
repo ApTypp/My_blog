@@ -1,9 +1,10 @@
 <?php
 
 function __autoload($className) {
-    $className = str_replace('..', '', $className);
+    $className = str_replace('_', '/', $className);
     require_once("$className.php");
 }
+
 
 // Site Title
 $site_title = 'Blog';
@@ -16,15 +17,8 @@ function getRoot($toWhere){
     return __DIR__.'/..'.$toWhere;
 }
 
-function getDBAL()
-{
-    $serverAddress = 'localhost';
-    $userName = '';
-    $DBPassword = '';
-    $dbName = '';
-    $port = 3306;
-
-    $dbal = new \Classes\DBAL($serverAddress, $userName, $DBPassword, $dbName,$port);
+function getDBAL(){
+    $dbal = new \Classes\DBAL();
     return $dbal;
 }
 $dbal = getDBAL();
