@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
 function __autoload($className) {
     $className = str_replace('_', '/', $className);
     require_once("$className.php");

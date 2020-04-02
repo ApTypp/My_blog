@@ -1,5 +1,7 @@
-<?php include ($_SERVER['DOCUMENT_ROOT'] . '/series/dynamic/my_blog/template/header.php'); //Header ?>
-
+<?php
+include_once('config/env.php');
+include_once(getRoot('/template/header.php')); // Header
+?>
     <form action="insert" method="post">
         <div class="container">
             <h4>What are you thinking about?</h4>

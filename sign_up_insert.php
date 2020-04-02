@@ -13,7 +13,7 @@ include_once (getRoot('/template/header.php')); // Header ?>
             echo $validate->errorMessage;
         } else {
             $user = new \Classes\Users();
-            if ($dbal->createUser($user, $parameters)){
+            if ($user->createUser($user, $parameters)) {
                 echo '--- USER CREATED ---';
             } else {
                 echo $dbal->error_message;
